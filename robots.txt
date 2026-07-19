@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jdux.design/sitemap.xml
