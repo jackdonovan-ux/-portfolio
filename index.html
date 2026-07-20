@@ -401,39 +401,44 @@ class Component extends DCLogic {
         const top = scroller.scrollTop;
         return top >= pin.offsetTop - 2 && top <= pin.offsetTop + travel + 2;
       };
-      // Discrete paging: advance EXACTLY one project per gesture. We ignore all
-      // further input until the move has fully settled (detected by scroll-stop),
-      // so trackpad/mouse momentum can never skip past a project.
-      let animating = false, tIdx = null, restT, failT;
+      // One project per gesture. The lock is held until the wheel goes QUIET
+      // (>150ms with no events) AND the move has landed — ongoing trackpad
+      // momentum keeps re-arming it, so it can never carry into a 2nd step.
+      let locked = false, tIdx = null, lastWheel = 0, releaseT, hardT;
+      const tryRelease = () => {
+        clearTimeout(releaseT);
+        releaseT = setTimeout(() => {
+          const parked = tIdx == null || Math.abs(scroller.scrollTop - panelTop(tIdx)) < 6;
+          if (Date.now() - lastWheel >= 150 && parked) { locked = false; clearTimeout(hardT); }
+          else tryRelease();
+        }, 150);
+      };
       const goTo = (idx) => {
         tIdx = Math.max(0, Math.min(panels - 1, idx));
-        animating = true;
         scroller.scrollTo({ top: panelTop(tIdx), behavior: 'smooth' });
-        clearTimeout(failT); failT = setTimeout(() => { animating = false; }, 900);
+        clearTimeout(hardT); hardT = setTimeout(() => { locked = false; }, 2500); // safety net
       };
       const snap = () => {
-        if (!inZone() || animating) return;
+        if (!inZone() || locked) return;
         const top = scroller.scrollTop, target = panelTop(curPanel());
         if (Math.abs(target - top) > 2) scroller.scrollTo({ top: target, behavior: 'smooth' });
       };
       scroller.addEventListener('scroll', () => {
         if (!tk) { tk = true; requestAnimationFrame(() => { this.onFlowScroll(); spyNav(); tk = false; }); }
-        if (animating) {
-          clearTimeout(restT);
-          restT = setTimeout(() => { if (tIdx != null && Math.abs(scroller.scrollTop - panelTop(tIdx)) < 5) animating = false; }, 150);
-        } else {
-          clearTimeout(snapT); snapT = setTimeout(snap, 220);
-        }
+        if (!locked) { clearTimeout(snapT); snapT = setTimeout(snap, 220); }
       }, { passive: true });
       scroller.addEventListener('wheel', (e) => {
         if (!inZone()) return;
         const dir = e.deltaY > 0 ? 1 : (e.deltaY < 0 ? -1 : 0);
         if (!dir) return;
-        const cur = (animating && tIdx != null) ? tIdx : curPanel();
-        if ((dir > 0 && cur >= panels - 1) || (dir < 0 && cur <= 0)) { if (animating) e.preventDefault(); return; } // release to page at the ends
+        const cur = (locked && tIdx != null) ? tIdx : curPanel();
+        if ((dir > 0 && cur >= panels - 1) || (dir < 0 && cur <= 0)) { if (locked) e.preventDefault(); return; } // release to the page at the ends
         e.preventDefault();
-        if (animating) return; // block momentum until the current move lands
+        lastWheel = Date.now();
+        if (locked) { tryRelease(); return; } // swallow momentum, keep the lock alive
+        locked = true;
         goTo(cur + dir);
+        tryRelease();
       }, { passive: false });
 
       this.onFlowScroll(); spyNav();
