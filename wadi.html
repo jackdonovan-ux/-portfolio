@@ -185,7 +185,7 @@ html,body{margin:0;padding:0}
 <!-- FOOTER -->
 <footer style="max-width:1240px;margin:0 auto;padding:130px 44px 70px">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap"><h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:500;font-size:72px;line-height:1;letter-spacing:-.02em">Get in touch.</h2><a href="mailto:jackdonovan.ux@gmail.com" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:15px 22px;transition:background-color .3s ease,color .3s ease,border-color .3s ease" data-btn="" data-bfill="var(--fg)" data-bink="var(--bg)">jackdonovan.ux@gmail.com →</a></div>
-<div style="margin-top:64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:30px"><div style="display:flex;align-items:center;gap:14px;color:var(--fg)"><img data-logoflip src="assets/jdux-logo.png" alt="JDUX" style="height:26px;width:auto;display:block"><span style="font:600 12px/1 'IBM Plex Sans';letter-spacing:.02em">jdux.design</span></div><div style="display:flex;flex-direction:column;gap:6px;text-align:right"><span style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">©2026 · London</span><span style="font:400 10px/1.6 'IBM Plex Sans';letter-spacing:.02em;color:var(--muted)">Designed &amp; built by Jack Donovan with Claude — an AI-led design workflow.</span></div></div>
+<div style="margin-top:64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);padding-top:30px"><div style="display:flex;align-items:center;gap:14px;color:var(--fg)"><img data-logoflip src="assets/jdux-logo.png" alt="JDUX" style="height:26px;width:auto;display:block"><span style="font:600 12px/1 'IBM Plex Sans';letter-spacing:.02em">jdux.design</span></div><span data-backtop="" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .3s ease">↑ Back to top</span><div style="display:flex;flex-direction:column;gap:6px;text-align:right"><span style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">©2026 · London</span><span style="font:400 10px/1.6 'IBM Plex Sans';letter-spacing:.02em;color:var(--muted)">Designed &amp; built by Jack Donovan with Claude — an AI-led design workflow.</span></div></div>
 </footer>
 
 <div style="height:40px"></div>
@@ -224,6 +224,12 @@ class Component extends DCLogic {
     const nav = document.getElementById('cs-nav');
     const prog = document.getElementById('cs-progress');
     const toggle = document.getElementById('cs-toggle');
+    const backtop = root.querySelector('[data-backtop]');
+    if (backtop) {
+      backtop.addEventListener('mouseenter', () => { backtop.style.color = 'var(--fg)'; });
+      backtop.addEventListener('mouseleave', () => { backtop.style.color = 'var(--muted)'; });
+      backtop.addEventListener('click', () => { if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
 
     // --- password gate ---
     const PASS = 'vision2030';
