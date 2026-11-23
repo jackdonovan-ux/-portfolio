@@ -39,6 +39,9 @@ a{color:inherit}
 @keyframes recblink{0%,100%{opacity:1}50%{opacity:0}}
 #g3-scroll::-webkit-scrollbar{display:none}
 .cases-mob{display:none}
+.hero-sectors a{color:var(--fg);text-decoration:none;border-bottom:2px solid var(--muted);cursor:pointer;transition:border-color .3s,color .3s}
+.hero-sectors a:hover,.hero-sectors a:focus-visible{border-bottom-color:var(--fg)!important;outline:none}
+.hero-sectors a:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
 .nav-compact{display:none}
 /* Tablet + mobile: compact nav, touch carousel, stacked sections */
 @container home (max-width:1199px){
@@ -60,14 +63,16 @@ a{color:inherit}
 }
 @container home (max-width:767px){
   .nav-desktop-only{display:none!important}
-  .hero-trust{gap:6px 26px!important}
-  .hero-trust img{height:19px!important;width:auto!important;object-fit:contain}
-  .hero-trust img:first-child{height:14px!important}
-  .hero-trust-break{display:block!important;flex-basis:100%!important;height:0!important}
+  .hero-trust{gap:14px 18px!important}
+  .hero-trust img{height:15px!important;width:auto!important;max-width:62px!important;object-fit:contain}
+  .hero-trust img[alt="Legal & General"],.hero-trust img[alt="Simplyhealth"],.hero-trust img[alt="Belmond"],.hero-trust img[alt="Matter of Form"],.hero-trust img[alt="AGL"]{height:24px!important}
+  .hero-trust img[alt="Zepho"]{height:11px!important}
   .sec-pad{padding-left:22px!important;padding-right:22px!important}
   .hero-pad{padding-left:22px!important;padding-right:22px!important}
   .hero-trust-wrap{bottom:34px!important}
   .hero-scroll-cue{display:none!important}
+  .hero-sectors>span{margin:0 .3em!important}
+  .hero-sectors{font-size:1rem!important}
   .writing-item{grid-template-columns:1fr!important;gap:7px!important;padding-top:20px!important;padding-bottom:22px!important}
   .writing-num{display:none!important}
   .writing-meta{justify-content:flex-start!important}
@@ -125,12 +130,13 @@ a{color:inherit}
 
 <section id="g3-hero" style="height:100%;min-height:600px;position:relative;display:flex;align-items:center;justify-content:center">
 <div class="hero-pad" style="position:relative;z-index:2;max-width:1080px;text-align:center;padding:0 60px;box-sizing:border-box">
-<div data-hero-bright="" style="font:500 11px/1 'IBM Plex Mono';letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(20px,3cqi,30px);transition:color .4s ease">Jack Donovan — Experience &amp; Product Design Leader</div>
-<h1 data-hero-ticker="" style="margin:0;font-family:var(--display,'EB Garamond',serif);font-weight:500;font-size:clamp(2.35rem,6.6cqi,5.75rem);line-height:1.02;letter-spacing:-.01em;min-height:1.04em;transition:color .4s ease,text-shadow .4s ease"><span id="home-ticker"></span><span style="display:inline-block;width:.06em;height:.66em;margin-left:.09em;background:currentColor;vertical-align:baseline;animation:recblink 1.05s step-end infinite"></span></h1>
-<p data-hero-dim="" style="margin:clamp(20px,3cqi,30px) auto 0;max-width:56ch;font-size:clamp(1rem,1.55cqi,1.31rem);line-height:1.6;color:var(--fg);transition:color .4s ease,text-shadow .4s ease">I build what's missing — teams, standards, and products people want to use, in sectors that shape everyday life: <span data-home-trig="" data-idx="0" data-tint="#10222a url('assets/case-kaluza.jpeg') center/cover" data-caption="Energy · Kaluza" data-title="Kaluza" style="cursor:pointer;border-bottom:2px solid var(--muted);transition:border-color .3s">energy</span>, <span data-home-trig="" data-idx="1" data-tint="#210a0b url('assets/case-ford.png') center/cover" data-caption="Automotive · Ford Mach-e" data-title="Ford Mach-e" style="cursor:pointer;border-bottom:2px solid var(--muted);transition:border-color .3s">mobility</span>, <span data-home-trig="" data-idx="2" data-tint="#1a2830 url('assets/case-practi.png') center/cover" data-caption="Healthcare · Practi Health" data-title="Practi Health" style="cursor:pointer;border-bottom:2px solid var(--muted);transition:border-color .3s">healthcare</span>, and <span data-home-trig="" data-idx="3" data-tint="#2c2010 url('assets/case-wadi.png') center/cover" data-caption="Hospitality · Wadi Safar" data-title="Wadi Safar" style="cursor:pointer;border-bottom:2px solid var(--muted);transition:border-color .3s">hospitality</span>.</p>
+<div class="hero-id" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:clamp(20px,3cqi,30px)"><img src="assets/hero-jack.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;display:block;flex:0 0 auto"><div style="text-align:left;display:flex;flex-direction:column;gap:7px"><span style="font:600 16px/1.1 'IBM Plex Sans';color:var(--fg)">Jack Donovan</span><span style="font:500 11px/1.2 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Product &amp; Service Design Lead</span></div></div>
+<h1 style="margin:0;font-family:var(--display,'EB Garamond',serif);font-weight:500;font-size:clamp(2.35rem,6.6cqi,5.75rem);line-height:1.02;letter-spacing:-.01em">I build what's missing.</h1>
+<p style="margin:clamp(20px,3cqi,30px) auto 0;max-width:56ch;font-size:clamp(1rem,1.55cqi,1.31rem);line-height:1.6;color:var(--fg);transition:color .4s ease,text-shadow .4s ease">Teams, standards, and products, in sectors that shape everyday life:</p>
+<nav class="hero-sectors" aria-label="Work by sector" style="margin-top:12px;font-size:clamp(1rem,1.55cqi,1.31rem);line-height:1.6"><a href="kaluza.html" data-home-trig="" data-idx="0">Energy</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="practi.html" data-home-trig="" data-idx="2">Healthcare</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="ford.html" data-home-trig="" data-idx="1">Automotive</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="wadi.html" data-home-trig="" data-idx="3">Hospitality</a></nav>
 <div data-hero-bright="" class="hero-scroll-cue" style="margin-top:clamp(22px,3cqi,30px);font:500 11px/1 'IBM Plex Mono';letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .4s ease">Scroll to explore ↓</div>
 </div>
-<div class="hero-trust-wrap" style="position:absolute;left:0;right:0;bottom:56px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 22px;box-sizing:border-box"><div style="font:500 10px/1 'IBM Plex Mono';letter-spacing:.24em;text-transform:uppercase;color:var(--muted)">Trusted by</div><div class="hero-trust" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px 42px;opacity:.55"><img data-logoflip="" src="assets/logo-kaluza.png" alt="Kaluza" style="height:16px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-ford.png" alt="Ford" style="height:25px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-lg.png" alt="Legal &amp; General" style="height:32px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-bcg.png" alt="BCG" style="height:19px;width:auto;max-width:150px;object-fit:contain;display:block"><div class="hero-trust-break" style="display:none;flex-basis:0;width:0;height:0;overflow:hidden"></div><img data-logoflip="" src="assets/logo-simplyhealth.png" alt="Simplyhealth" style="height:36px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-nab.png" alt="NAB" style="height:21px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-belmond.png" alt="Belmond" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"></div></div>
+<div class="hero-trust-wrap" style="position:absolute;left:0;right:0;bottom:56px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 22px;box-sizing:border-box"><div style="font:500 10px/1 'IBM Plex Mono';letter-spacing:.24em;text-transform:uppercase;color:var(--muted)">Trusted by</div><div class="hero-trust" style="display:grid;grid-template-columns:repeat(5,auto);justify-content:center;justify-items:center;align-items:center;gap:20px 42px;opacity:.55"><img data-logoflip="" src="assets/logo-kaluza.png" alt="Kaluza" style="height:16px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-ford.png" alt="Ford" style="height:25px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-bcg.png" alt="BCG" style="height:19px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-agl.png" alt="AGL" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-simplyhealth.png" alt="Simplyhealth" style="height:36px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-nab.png" alt="NAB" style="height:21px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-zepho.svg" alt="Zepho" style="height:14px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-belmond.png" alt="Belmond" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-mof.png" alt="Matter of Form" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-lg.png" alt="Legal &amp; General" style="height:32px;width:auto;max-width:150px;object-fit:contain;display:block"></div></div>
 </section>
 
 <section id="g3-work">
@@ -222,7 +228,7 @@ class Component extends DCLogic {
     // Standalone (no sized ancestor) → fill the viewport; embedded frames keep filling their container.
     const parentH = root.parentElement ? root.parentElement.clientHeight : 0;
     if (!parentH || root.clientHeight < 50) root.style.height = '100dvh';
-    const PHRASES = ['Complex problems.', 'Collaborative craft.', 'Human outcomes.', 'Work that matters.'];
+    const PHRASES = []; // ticker retired: H1 is static
     this.initLoader(root, PHRASES);
 
     // clocks
@@ -332,7 +338,7 @@ class Component extends DCLogic {
         t.addEventListener('mouseenter', () => { t.style.borderColor = 'var(--fg)'; });
         t.addEventListener('mouseleave', () => { t.style.borderColor = 'var(--muted)'; });
       }
-      t.addEventListener('click', () => jumpToPanelFade(parseInt(t.dataset.idx, 10) || 0));
+      t.addEventListener('click', (e) => { e.preventDefault(); jumpToPanelFade(parseInt(t.dataset.idx, 10) || 0); });
     });
     steps.forEach((el, i) => {
       el.addEventListener('click', () => this.jumpToPanel(i, panels));

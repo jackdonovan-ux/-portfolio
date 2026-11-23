@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<title>Zepho — Jack Donovan</title>
+<meta name="description" content="Onboarding and research audit for an AI running coach. Full case study coming soon.">
+<link rel="canonical" href="https://jdux.design/zepho.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jack Donovan · jdux.design">
+<meta property="og:title" content="Zepho — Jack Donovan">
+<meta property="og:description" content="Onboarding and research audit for an AI running coach. Full case study coming soon.">
+<meta property="og:url" content="https://jdux.design/zepho.html">
+<meta property="og:image" content="https://jdux.design/assets/case-zepho.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zepho — Jack Donovan">
+<meta name="twitter:description" content="Onboarding and research audit for an AI running coach. Full case study coming soon.">
+<meta name="twitter:image" content="https://jdux.design/assets/case-zepho.jpg">
+<link rel="icon" type="image/png" href="assets/jdux-logo.png">
+<link rel="apple-touch-icon" href="assets/jdux-logo.png">
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="cursor.js"></script>
+<style>
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+html,body{margin:0;padding:0}
+#cs-scroll::-webkit-scrollbar{width:0}
+@container cs (max-width:1080px){
+  .cs-body{grid-template-columns:1fr!important;gap:0!important}
+  .cs-body>*{min-width:0!important;max-width:100%!important}
+  .cs-body figure,.cs-body img,.cs-body video{max-width:100%!important}
+  .cs-rail{position:static!important;top:auto!important;margin-bottom:10px!important}
+  .cs-cols{grid-template-columns:1fr!important;gap:36px!important}
+}
+@container cs (max-width:820px){
+  #cs-nav{padding-left:22px!important;padding-right:22px!important}
+  .cs-hero{padding-left:22px!important;padding-right:22px!important;padding-top:118px!important}
+  .cs-sub{white-space:normal!important;font-size:clamp(1.35rem,5cqi,34px)!important}
+  .cs-body{padding-left:22px!important;padding-right:22px!important;padding-top:44px!important}
+  .cs-heroimg{padding-left:22px!important;padding-right:22px!important}
+  #zepho-soon{padding:72px 22px 0!important}
+  #zepho-soon p{font-size:22px!important}
+  .cs-crumb{display:none!important}
+  .cs-rail{position:sticky!important;top:56px!important;z-index:24!important;background:var(--bg)!important;border-bottom:1px solid var(--line)!important;margin:0 -22px 40px!important;padding:0!important;display:block!important;max-width:none!important}
+  .cs-rail .cs-meta,.cs-rail .cs-clabel{display:none!important}
+  .cs-rail nav{flex-direction:row!important;gap:22px!important;overflow-x:auto!important;padding:12px 22px!important;white-space:nowrap;scrollbar-width:none;font-size:13px!important}
+  .cs-rail nav::-webkit-scrollbar{display:none}
+  .cs-rail nav a{flex:0 0 auto!important}
+}
+#cs-nav[data-cover="1"]{--bg:#0c0c0d;--fg:#f2efe9;--muted:rgba(242,239,233,.72);--line:rgba(255,255,255,.22)}
+#cs-nav[data-cover="1"] [data-logoflip]{filter:none!important}
+.cs-cover-cue{transition:color .3s ease,border-color .3s ease}
+.cs-cover-cue:hover{color:#fff!important;border-color:rgba(255,255,255,.8)!important}
+@container cs (max-width:820px){
+  .cs-cover-inner{left:22px!important;right:22px!important}
+}
+</style>
+</helmet>
+
+<div id="cs-root" style="position:relative;width:100%;height:100dvh;max-width:100vw;overflow:hidden;container:cs / inline-size;--bg:#0c0c0d;--fg:#f2efe9;--muted:#8a887f;--line:rgba(255,255,255,.14);--panel:#141618;background:var(--bg);color:var(--fg);font-family:'IBM Plex Sans',system-ui,sans-serif">
+
+<div id="cs-progress" style="position:absolute;top:0;left:0;height:2px;width:0;background:var(--fg);z-index:32;transition:width .1s linear"></div>
+
+<div id="cs-nav" style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:22px 44px;background:transparent;border-bottom:1px solid transparent;transition:background .4s ease,backdrop-filter .4s ease,border-color .4s ease,padding .35s ease">
+<div style="display:flex;align-items:center;gap:18px">
+<a href="index.html" style="display:block;color:var(--fg)"><img data-logoflip src="assets/jdux-logo.png" alt="JDUX" style="height:30px;width:auto;display:block"></a>
+<span style="width:1px;height:20px;background:var(--line)"></span>
+<div class="cs-crumb" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)"><a href="index.html">Work</a> &nbsp;/&nbsp; <span style="color:var(--fg)">Zepho</span></div>
+</div>
+<button id="cs-toggle" data-btn data-bfill="var(--fg)" data-bink="var(--bg)" style="font:500 10.5px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer;transition:background-color .3s ease,border-color .3s ease,color .3s ease">◐ DARK</button>
+</div>
+
+<div id="cs-scroll" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+
+<!-- COVER -->
+<section id="cs-cover" style="position:relative;height:100dvh;min-height:560px;overflow:hidden;background:#0d0d0e">
+<div role="img" aria-label="Zepho" style="position:absolute;inset:0;background:url('assets/case-zepho.jpg') center/cover no-repeat"></div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 52%,rgba(0,0,0,.45) 100%)"></div><div style="position:absolute;inset:0;background:radial-gradient(ellipse 62% 46% at 50% 50%,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 72%)"></div>
+<div class="cs-cover-inner" style="position:absolute;left:56px;right:56px;top:50%;transform:translateY(-50%);color:#fff;text-align:center"><div style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-bottom:22px">Fitness · AI coaching · Case study coming soon</div><h1 style="margin:0;line-height:0"><img src="assets/logo-zepho-colour.svg" alt="Zepho" style="width:clamp(220px,34cqi,440px);height:auto;display:inline-block"></h1><p style="margin:22px auto 0;max-width:30ch;font-family:var(--display,'EB Garamond',serif);font-weight:400;font-size:clamp(1.35rem,2.4cqi,2.1rem);line-height:1.3;color:rgba(255,255,255,.9)">What has to happen in a runner's first seven days?</p></div>
+<div style="position:absolute;left:0;right:0;bottom:40px;text-align:center;font:600 11px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;color:rgba(255,255,255,.7)">Full case study coming soon</div>
+</section>
+
+<!-- PREV / NEXT -->
+<section style="max-width:1240px;margin:0 auto;padding:96px 44px 0">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid var(--line);padding-top:40px">
+<a data-pn data-prev href="practi.html" style="position:relative;display:block"><div id="cs-prev-img" style="position:absolute;left:0;bottom:100%;margin-bottom:22px;width:230px;height:146px;border-radius:8px;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;background:#1a2830 url('assets/case-practi.png') center/cover;box-shadow:0 26px 54px -26px rgba(0,0,0,.75)"></div><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;transition:color .3s ease">← Previous</div><div style="font-family:'EB Garamond',serif;font-weight:400;font-size:40px;letter-spacing:-.02em">Practi Health</div></a>
+<a href="wadi.html" data-next data-pn style="position:relative;display:block;text-align:right"><div id="cs-next-img" style="position:absolute;right:0;bottom:100%;margin-bottom:22px;width:230px;height:146px;border-radius:8px;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;background:#2c2010 url('assets/case-wadi.png') center/cover;box-shadow:0 26px 54px -26px rgba(0,0,0,.75)"></div><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;transition:color .3s ease">Next project →</div><div style="font-family:'EB Garamond',serif;font-weight:400;font-size:40px;letter-spacing:-.02em">Wadi Safar</div></a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="max-width:1240px;margin:0 auto;padding:130px 44px 70px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap"><h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:500;font-size:72px;line-height:1;letter-spacing:-.02em">Get in touch.</h2><a href="mailto:jack@jdux.design" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:15px 22px;transition:background-color .3s ease,color .3s ease,border-color .3s ease" data-btn="" data-bfill="var(--fg)" data-bink="var(--bg)">Email me →</a></div>
+<div style="margin-top:64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);padding-top:30px"><div style="display:flex;align-items:center;gap:14px;color:var(--fg)"><img data-logoflip src="assets/jdux-logo.png" alt="JDUX" style="height:26px;width:auto;display:block"><span style="font:600 12px/1 'IBM Plex Sans';letter-spacing:.02em">jdux.design</span></div><span data-backtop="" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .3s ease">↑ Back to top</span><div style="display:flex;flex-direction:column;gap:6px;text-align:right"><span style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">©2026 · London</span><span style="font:400 10px/1.6 'IBM Plex Sans';letter-spacing:.02em;color:var(--muted)">Designed &amp; built by Jack Donovan with Claude — an AI-led design workflow.</span></div></div>
+</footer>
+
+<div style="height:40px"></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.getElementById('cs-root');
+    this.initButtons(root);
+    Array.from(document.querySelectorAll('[data-pn]')).forEach(function(a){
+      var over = a.querySelector('div:not([id])');
+      if (!over) return;
+      a.addEventListener('mouseenter', function(){ over.style.color = 'var(--fg)'; });
+      a.addEventListener('mouseleave', function(){ over.style.color = 'var(--muted)'; });
+    });
+    this.initVideos(root);
+    const scroller = document.getElementById('cs-scroll');
+    const nav = document.getElementById('cs-nav');
+    const prog = document.getElementById('cs-progress');
+    const toggle = document.getElementById('cs-toggle');
+    const backtop = root.querySelector('[data-backtop]');
+    if (backtop) {
+      backtop.addEventListener('mouseenter', () => { backtop.style.color = 'var(--fg)'; });
+      backtop.addEventListener('mouseleave', () => { backtop.style.color = 'var(--muted)'; });
+      backtop.addEventListener('click', () => { if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
+
+    const modes = {
+      dark:  {'--bg':'#0c0c0d','--fg':'#f2efe9','--muted':'#8a887f','--line':'rgba(255,255,255,.14)','--panel':'#141618'},
+      light: {'--bg':'#efece4','--fg':'#191815','--muted':'#77705f','--line':'rgba(0,0,0,.16)','--panel':'#e4e0d6'}
+    };
+    let gm = 'dark';
+    if (toggle && root) {
+      toggle.addEventListener('click', () => {
+        gm = gm === 'dark' ? 'light' : 'dark';
+        const v = modes[gm]; for (const k in v) root.style.setProperty(k, v[k]);
+        toggle.textContent = gm === 'dark' ? '\u25d0 DARK' : '\u25d1 LIGHT';
+        root.querySelectorAll('[data-logoflip]').forEach(l => l.style.filter = gm === 'light' ? 'invert(1)' : 'none');
+        var _cs=getComputedStyle(root),_fg=_cs.getPropertyValue('--fg').trim(),_ln=_cs.getPropertyValue('--line').trim();
+        root.querySelectorAll('[data-btn]').forEach(b => { b.style.backgroundColor='transparent'; b.style.color=_fg; b.style.borderColor=_ln; b._bb=null; b._hv=0; });
+      });
+    }
+
+    const links = Array.from(document.querySelectorAll('[data-cs-jump]'));
+    const sections = links.map(l => document.getElementById(l.dataset.csJump));
+    links.forEach((l, i) => {
+      l.addEventListener('click', () => {
+        const t = sections[i];
+        if (t && scroller) scroller.scrollTo({ top: t.offsetTop - 88, behavior: 'smooth' });
+      });
+      l.addEventListener('mouseenter', () => { l.dataset.hovering = '1'; l.style.color = 'var(--fg)'; });
+      l.addEventListener('mouseleave', () => { delete l.dataset.hovering; l.style.color = l.dataset.active === '1' ? 'var(--fg)' : 'var(--muted)'; });
+    });
+
+    const onScroll = () => {
+      if (!scroller) return;
+      const st = scroller.scrollTop;
+      if (nav) {
+        const cov = document.getElementById('cs-cover');
+        nav.dataset.cover = (cov && st < cov.offsetHeight - 60) ? '1' : '0';
+        const sc = st > 20;
+        nav.style.background = sc ? 'color-mix(in srgb, var(--bg) 30%, transparent)' : 'transparent';
+        nav.style.backdropFilter = sc ? 'blur(14px)' : 'none';
+        nav.style.webkitBackdropFilter = sc ? 'blur(14px)' : 'none';
+        nav.style.borderBottomColor = sc ? 'var(--line)' : 'transparent';
+        nav.style.padding = sc ? '13px 44px' : '22px 44px';
+      }
+      if (prog) {
+        const max = scroller.scrollHeight - scroller.clientHeight;
+        prog.style.width = (max > 0 ? (st / max) * 100 : 0) + '%';
+      }
+      let act = 0;
+      sections.forEach((s, i) => { if (s && s.offsetTop - 130 <= st) act = i; });
+      links.forEach((l, i) => { l.dataset.active = i === act ? '1' : '0'; if (!l.dataset.hovering) l.style.color = i === act ? 'var(--fg)' : 'var(--muted)'; });
+    };
+    if (scroller) {
+      let tk = false;
+      scroller.addEventListener('scroll', () => { if (!tk) { tk = true; requestAnimationFrame(() => { onScroll(); tk = false; }); } }, { passive: true });
+      onScroll();
+    }
+
+    const nextLink = document.querySelector('[data-next]');
+    const nextImg = document.getElementById('cs-next-img');
+    if (nextLink && nextImg) {
+      nextLink.addEventListener('mouseenter', () => { nextImg.style.opacity = '1'; nextImg.style.transform = 'translateY(0)'; });
+      nextLink.addEventListener('mouseleave', () => { nextImg.style.opacity = '0'; nextImg.style.transform = 'translateY(8px)'; });
+    }
+    const prevLink = document.querySelector('[data-prev]');
+    const prevImg = document.getElementById('cs-prev-img');
+    if (prevLink && prevImg) {
+      prevLink.addEventListener('mouseenter', () => { prevImg.style.opacity = '1'; prevImg.style.transform = 'translateY(0)'; });
+      prevLink.addEventListener('mouseleave', () => { prevImg.style.opacity = '0'; prevImg.style.transform = 'translateY(8px)'; });
+    }
+  }
+
+  initButtons(root) {
+    if (!root) return;
+    const resolve = (el, v) => (v && v.indexOf('var(') === 0) ? (getComputedStyle(el).getPropertyValue(v.slice(4, -1).trim()).trim() || v) : v;
+    root.querySelectorAll('[data-btn]').forEach(b => {
+      b.addEventListener('mouseenter', () => {
+        if (!b._hv) { const cs = getComputedStyle(b); b._bb = { bg: cs.backgroundColor, fg: cs.color, bd: cs.borderTopColor }; b._hv = 1; }
+        const fill = resolve(b, b.dataset.bfill), ink = resolve(b, b.dataset.bink);
+        b.style.backgroundColor = fill; b.style.color = ink; b.style.borderColor = fill;
+      });
+      b.addEventListener('mouseleave', () => { b._hv = 0; if (b._bb) { b.style.backgroundColor = b._bb.bg; b.style.color = b._bb.fg; b.style.borderColor = b._bb.bd; } });
+    });
+  }
+
+  initVideos(root) {
+    if (!root) return;
+    const vids = Array.from(root.querySelectorAll('[data-autovid]'));
+    if (!vids.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.25 });
+    vids.forEach(v => { v.muted = true; v.loop = true; v.playsInline = true; io.observe(v); });
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c0c0d"/><text x="50" y="58" font-family="Georgia,'EB Garamond',serif" font-size="30" letter-spacing="1" fill="#f2efe9" text-anchor="middle">JD</text><text x="50" y="76" font-family="monospace" font-size="6.5" letter-spacing="2" fill="#8a887f" text-anchor="middle">JDUX.DESIGN</text></svg></template>
+<style>
+[data-lightbox]{cursor:zoom-in}
+@container cs (max-width:820px){[data-lightbox]{cursor:default}}
+.jdux-lightbox-overlay{position:fixed;inset:0;background:rgba(10,9,7,.92);z-index:99999;display:none;align-items:center;justify-content:center;padding:32px;opacity:0;transition:opacity .25s ease}
+.jdux-lightbox-overlay.jdux-lb-open{display:flex}
+.jdux-lightbox-overlay.jdux-lb-show{opacity:1}
+.jdux-lightbox-content{max-width:92vw;max-height:88vh;display:flex;align-items:center;justify-content:center}
+.jdux-lightbox-content img,.jdux-lightbox-content video{max-width:92vw;max-height:88vh;width:auto;height:auto;object-fit:contain;display:block;box-shadow:0 30px 80px rgba(0,0,0,.5);border-radius:2px}
+.jdux-lightbox-close{position:fixed;top:24px;right:28px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease;font-family:system-ui,sans-serif;z-index:100000}
+.jdux-lightbox-close:hover{background:rgba(255,255,255,.18)}
+
+</style>
+<script>
+(function(){
+  if(window.__jduxLightbox) return; window.__jduxLightbox = true;
+  function init(){
+    var overlay = document.createElement('div');
+    overlay.className = 'jdux-lightbox-overlay';
+    overlay.innerHTML = '<div class="jdux-lightbox-close" aria-label="Close">&times;</div><div class="jdux-lightbox-content"></div>';
+    document.body.appendChild(overlay);
+    var content = overlay.querySelector('.jdux-lightbox-content');
+    var closeBtn = overlay.querySelector('.jdux-lightbox-close');
+
+    function openLightbox(el){
+      content.innerHTML = '';
+      if(el.tagName === 'IMG'){
+        var img = document.createElement('img');
+        img.src = el.currentSrc || el.src;
+        img.alt = el.alt || '';
+        content.appendChild(img);
+      } else if(el.tagName === 'VIDEO'){
+        var video = document.createElement('video');
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        var srcEl = el.querySelector('source');
+        var srcUrl = srcEl ? srcEl.src : el.currentSrc;
+        video.innerHTML = '<source src="' + srcUrl + '" type="video/mp4">';
+        content.appendChild(video);
+      }
+      overlay.classList.add('jdux-lb-open');
+      requestAnimationFrame(function(){ overlay.classList.add('jdux-lb-show'); });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(){
+      overlay.classList.remove('jdux-lb-show');
+      document.body.style.overflow = '';
+      var v = content.querySelector('video');
+      if(v) v.pause();
+      setTimeout(function(){
+        overlay.classList.remove('jdux-lb-open');
+        content.innerHTML = '';
+      }, 250);
+    }
+
+    document.addEventListener('click', function(e){
+      var el = e.target.closest('[data-lightbox]');
+      if(el){
+        if(window.matchMedia('(max-width:820px)').matches) return;
+        openLightbox(el);
+        return;
+      }
+      if(e.target === overlay || e.target === closeBtn){ closeLightbox(); }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && overlay.classList.contains('jdux-lb-open')) closeLightbox();
+    });
+  }
+  if(document.body) init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+</body>
+</html>
