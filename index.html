@@ -22,7 +22,7 @@
 <meta name="twitter:image" content="https://jdux.design/assets/og-card.png?v=2">
 <link rel="icon" type="image/png" href="assets/jdux-logo.png">
 <link rel="apple-touch-icon" href="assets/jdux-logo.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Jack Donovan","jobTitle":"Experience & Product Design Leader","url":"https://jdux.design/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"knowsAbout":["Product Design","UX Design","Design Leadership","Design Systems"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Jack Donovan","jobTitle":"Product & Service Design Lead","url":"https://jdux.design/","address":{"@type":"PostalAddress","addressLocality":"Brighton and Hove","addressCountry":"GB"},"knowsAbout":["Product Design","UX Design","Design Leadership","Design Systems"]}</script>
 </head>
 <body>
 <x-dc>
@@ -39,9 +39,12 @@ a{color:inherit}
 @keyframes recblink{0%,100%{opacity:1}50%{opacity:0}}
 #g3-scroll::-webkit-scrollbar{display:none}
 .cases-mob{display:none}
-.hero-sectors a{color:var(--fg);text-decoration:none;border-bottom:2px solid var(--muted);cursor:pointer;transition:border-color .3s,color .3s}
+.hero-sectors a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--muted);cursor:pointer;transition:border-color .3s,color .3s}
 .hero-sectors a:hover,.hero-sectors a:focus-visible{border-bottom-color:var(--fg)!important;outline:none}
 .hero-sectors a:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:4px;background:var(--fg);color:var(--bg);text-decoration:none;font:600 11px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;transition:opacity .25s,transform .25s}
+.hero-cta:hover{opacity:.85}
+.hero-cta:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .nav-compact{display:none}
 /* Tablet + mobile: compact nav, touch carousel, stacked sections */
 @container home (max-width:1199px){
@@ -63,7 +66,7 @@ a{color:inherit}
 }
 @container home (max-width:767px){
   .nav-desktop-only{display:none!important}
-  .hero-trust{gap:14px 18px!important}
+  .hero-trust{grid-template-columns:repeat(4,auto)!important;gap:16px 26px!important}
   .hero-trust img{height:15px!important;width:auto!important;max-width:62px!important;object-fit:contain}
   .hero-trust img[alt="Legal & General"],.hero-trust img[alt="Simplyhealth"],.hero-trust img[alt="Belmond"],.hero-trust img[alt="Matter of Form"],.hero-trust img[alt="AGL"]{height:24px!important}
   .hero-trust img[alt="Zepho"]{height:11px!important}
@@ -72,7 +75,9 @@ a{color:inherit}
   .hero-trust-wrap{bottom:34px!important}
   .hero-scroll-cue{display:none!important}
   .hero-sectors>span{margin:0 .3em!important}
-  .hero-sectors{font-size:1rem!important}
+  .hero-sectors{font-size:.88rem!important}
+  .hero-id-dash{display:none}
+  .hero-id-title{display:block;margin-top:3px}
   .writing-item{grid-template-columns:1fr!important;gap:7px!important;padding-top:20px!important;padding-bottom:22px!important}
   .writing-num{display:none!important}
   .writing-meta{justify-content:flex-start!important}
@@ -87,7 +92,7 @@ a{color:inherit}
 <div id="home-root" class="home-root" ref="{{ homeRef }}" style="position:relative;width:100%;height:100%;container:home / inline-size;--display:'EB Garamond',serif;--bg:#eceae4;--fg:#191815;--muted:#8a887f;--line:rgba(0,0,0,.16);background:var(--bg);color:var(--fg);font-family:'IBM Plex Sans',system-ui,sans-serif;transition:background-color .5s,color .5s;overflow:hidden">
 
 <div id="g3-nav" style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:22px 36px;box-sizing:border-box;background:transparent;border-bottom:1px solid transparent;transition:background .4s ease,backdrop-filter .4s ease,border-color .4s ease,box-shadow .4s ease,padding .35s ease">
-<div style="display:flex;align-items:center;gap:20px"><div style="color:var(--fg)"><img data-logoflip="" src="assets/jdux-logo.png" alt="JDUX" style="height:32px;width:auto;display:block"></div><span class="nav-desktop-only" style="width:1px;height:22px;background:var(--line)"></span><div class="nav-desktop-only" style="font:500 10px/1.4 'IBM Plex Mono';letter-spacing:.12em;color:var(--muted)"><div style="color:var(--fg);letter-spacing:.16em;text-transform:uppercase">London, UK</div><div><span id="g3-loc-time">--:--:--</span></div></div></div>
+<div style="display:flex;align-items:center;gap:20px"><div style="color:var(--fg)"><img data-logoflip="" src="assets/jdux-logo.png" alt="JDUX" style="height:32px;width:auto;display:block"></div><span class="nav-desktop-only" style="width:1px;height:22px;background:var(--line)"></span><div class="nav-desktop-only" style="font:500 10px/1.4 'IBM Plex Mono';letter-spacing:.12em;color:var(--muted)"><div style="color:var(--fg);letter-spacing:.16em;text-transform:uppercase">Brighton &amp; Hove, UK</div><div><span id="g3-loc-time">--:--:--</span></div></div></div>
 <div class="nav-desktop" style="display:flex;align-items:center;gap:24px">
 <nav style="display:flex;align-items:center;gap:13px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg)"><span data-nav="work" style="color:var(--muted);cursor:pointer">Work</span><span style="width:3px;height:3px;border-radius:50%;background:var(--muted);display:inline-block"></span><span data-nav="thoughts" style="color:var(--muted);cursor:pointer">Thoughts</span><span style="width:3px;height:3px;border-radius:50%;background:var(--muted);display:inline-block"></span><span data-nav="about" style="color:var(--muted);cursor:pointer">About</span><span style="width:3px;height:3px;border-radius:50%;background:var(--muted);display:inline-block"></span><span data-nav="contact" style="color:var(--muted);cursor:pointer">Contact</span></nav>
 <span style="width:1px;height:22px;background:var(--line)"></span>
@@ -108,7 +113,7 @@ a{color:inherit}
 <span data-mnav="contact" style="font-family:var(--display,'EB Garamond',serif);font-size:44px;line-height:1.5;letter-spacing:-.01em;cursor:pointer">Contact</span>
 </nav>
 <div style="border-top:1px solid var(--line);padding-top:22px;display:flex;flex-direction:column;gap:8px">
-<div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">London, UK · <span id="g3-loc-time2">--:--:--</span></div>
+<div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Brighton &amp; Hove · <span id="g3-loc-time2">--:--:--</span></div>
 <a href="mailto:jack@jdux.design" style="font:500 14px/1.4 'IBM Plex Sans';color:var(--fg);text-decoration:none">jack@jdux.design</a>
 </div>
 </div>
@@ -129,14 +134,14 @@ a{color:inherit}
 <div id="g3-scroll" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none">
 
 <section id="g3-hero" style="height:100%;min-height:600px;position:relative;display:flex;align-items:center;justify-content:center">
-<div class="hero-pad" style="position:relative;z-index:2;max-width:1080px;text-align:center;padding:0 60px;box-sizing:border-box">
-<div class="hero-id" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:clamp(20px,3cqi,30px)"><img src="assets/hero-jack.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;display:block;flex:0 0 auto"><div style="text-align:left;display:flex;flex-direction:column;gap:7px"><span style="font:600 16px/1.1 'IBM Plex Sans';color:var(--fg)">Jack Donovan</span><span style="font:500 11px/1.2 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Product &amp; Service Design Lead</span></div></div>
-<h1 style="margin:0;font-family:var(--display,'EB Garamond',serif);font-weight:500;font-size:clamp(2.35rem,6.6cqi,5.75rem);line-height:1.02;letter-spacing:-.01em">I build what's missing.</h1>
-<p style="margin:clamp(20px,3cqi,30px) auto 0;max-width:56ch;font-size:clamp(1rem,1.55cqi,1.31rem);line-height:1.6;color:var(--fg);transition:color .4s ease,text-shadow .4s ease">Teams, standards, and products, in sectors that shape everyday life:</p>
-<nav class="hero-sectors" aria-label="Work by sector" style="margin-top:12px;font-size:clamp(1rem,1.55cqi,1.31rem);line-height:1.6"><a href="kaluza.html" data-home-trig="" data-idx="0">Energy</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="practi.html" data-home-trig="" data-idx="2">Healthcare</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="ford.html" data-home-trig="" data-idx="1">Automotive</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="wadi.html" data-home-trig="" data-idx="3">Hospitality</a></nav>
-<div data-hero-bright="" class="hero-scroll-cue" style="margin-top:clamp(22px,3cqi,30px);font:500 11px/1 'IBM Plex Mono';letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .4s ease">Scroll to explore ↓</div>
+<div class="hero-pad" style="position:relative;z-index:2;width:100%;text-align:left;padding:0 36px;box-sizing:border-box">
+<div class="hero-id" style="display:flex;align-items:center;justify-content:flex-start;gap:16px;margin-bottom:clamp(22px,3.2cqi,34px)"><img src="assets/hero-jack.jpg" alt="" width="56" height="56" style="width:56px;height:56px;border-radius:50%;object-fit:cover;display:block;flex:0 0 auto"><div style="font-size:clamp(1rem,1.4cqi,1.25rem);line-height:1.3;color:var(--muted);text-align:left"><strong style="font-weight:600;color:var(--fg)">Jack Donovan</strong><span class="hero-id-dash"> — </span><span class="hero-id-title">Product &amp; Service Design Lead</span></div></div>
+<h1 data-hero-ticker="" style="margin:0;font-family:var(--display,'EB Garamond',serif);font-weight:500;font-size:clamp(2.35rem,6.6cqi,5.75rem);line-height:1.02;letter-spacing:-.01em;min-height:1.04em;transition:color .4s ease,text-shadow .4s ease"><span id="home-ticker"></span><span style="display:inline-block;width:.06em;height:.66em;margin-left:.09em;background:currentColor;vertical-align:baseline;animation:recblink 1.05s step-end infinite"></span></h1>
+<p style="margin:clamp(20px,3cqi,30px) 0 0;max-width:58ch;font-size:clamp(1rem,1.55cqi,1.31rem);line-height:1.6;color:var(--fg);transition:color .4s ease,text-shadow .4s ease">From concept validation to tested release, I frame the problem, set the direction and do the work, then build the teams and foundations that help it scale. In sectors that shape everyday life.</p>
+<nav class="hero-sectors" aria-label="Work by sector" style="margin-top:14px;font-size:clamp(.88rem,1.1cqi,1rem);line-height:1.6"><a href="kaluza.html" data-home-trig="" data-idx="0">Energy</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="practi.html" data-home-trig="" data-idx="2">Healthcare</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="ford.html" data-home-trig="" data-idx="1">Automotive</a><span aria-hidden="true" style="color:var(--muted);margin:0 .55em">·</span><a href="wadi.html" data-home-trig="" data-idx="3">Hospitality</a></nav>
+<div style="margin-top:clamp(26px,3.4cqi,38px)"><a href="mailto:jack@jdux.design" class="hero-cta">Email me <span aria-hidden="true">→</span></a></div>
 </div>
-<div class="hero-trust-wrap" style="position:absolute;left:0;right:0;bottom:56px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 22px;box-sizing:border-box"><div style="font:500 10px/1 'IBM Plex Mono';letter-spacing:.24em;text-transform:uppercase;color:var(--muted)">Trusted by</div><div class="hero-trust" style="display:grid;grid-template-columns:repeat(5,auto);justify-content:center;justify-items:center;align-items:center;gap:20px 42px;opacity:.55"><img data-logoflip="" src="assets/logo-kaluza.png" alt="Kaluza" style="height:16px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-ford.png" alt="Ford" style="height:25px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-bcg.png" alt="BCG" style="height:19px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-agl.png" alt="AGL" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-simplyhealth.png" alt="Simplyhealth" style="height:36px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-nab.png" alt="NAB" style="height:21px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-zepho.svg" alt="Zepho" style="height:14px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-belmond.png" alt="Belmond" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-mof.png" alt="Matter of Form" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-lg.png" alt="Legal &amp; General" style="height:32px;width:auto;max-width:150px;object-fit:contain;display:block"></div></div>
+<div class="hero-trust-wrap" style="position:absolute;left:0;right:0;bottom:56px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 22px;box-sizing:border-box"><div style="font:500 10px/1 'IBM Plex Mono';letter-spacing:.24em;text-transform:uppercase;color:var(--muted)">Trusted by</div><div class="hero-trust" style="display:grid;grid-template-columns:repeat(8,auto);justify-content:center;justify-items:center;align-items:center;gap:20px 38px;opacity:.55"><img data-logoflip="" src="assets/logo-kaluza.png" alt="Kaluza" style="height:16px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-ford.png" alt="Ford" style="height:25px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-bcg.png" alt="BCG" style="height:19px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-agl.png" alt="AGL" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-simplyhealth.png" alt="Simplyhealth" style="height:36px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-nab.png" alt="NAB" style="height:21px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-zepho.svg" alt="Zepho" style="height:14px;width:auto;max-width:150px;object-fit:contain;display:block"><img data-logoflip="" src="assets/logo-belmond.png" alt="Belmond" style="height:30px;width:auto;max-width:150px;object-fit:contain;display:block"></div></div>
 </section>
 
 <section id="g3-work">
@@ -213,7 +218,7 @@ a{color:inherit}
 
 <section id="g3-contact" class="sec-pad" style="background:var(--bg);color:var(--fg);padding:clamp(72px,10cqi,110px) 72px clamp(56px,8cqi,96px);border-top:1px solid var(--line);transition:background-color .5s,color .5s">
 <div class="contact-row" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap"><h2 class="contact-head" style="margin:0;font-family:var(--display,'EB Garamond',serif);font-weight:500;font-size:clamp(2.6rem,5.6cqi,5rem);line-height:1;letter-spacing:-.006em">Get in touch.</h2><a href="mailto:jack@jdux.design" data-btn="" data-bfill="var(--fg)" data-bink="var(--bg)" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:15px 22px;text-decoration:none;transition:background .3s ease,color .3s ease,border-color .3s ease">Email me →</a></div>
-<div class="footer-row" style="margin-top:70px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:30px"><div style="display:flex;align-items:center;gap:14px;color:var(--fg)"><img data-logoflip="" src="assets/jdux-logo.png" alt="JDUX" style="height:32px;width:auto;display:block"><span style="font:600 12px/1 'IBM Plex Sans';letter-spacing:.02em">jdux.design</span></div><span data-backtop="" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .3s ease">↑ Back to top</span><div style="display:flex;flex-direction:column;gap:6px;text-align:right"><span style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">©2026 · London</span><span class="footer-credit" style="font:400 10px/1.5 'IBM Plex Sans';letter-spacing:.02em;color:var(--muted)">Designed &amp; built by Jack Donovan with Claude — an AI-led design workflow.</span></div></div>
+<div class="footer-row" style="margin-top:70px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:30px"><div style="display:flex;align-items:center;gap:14px;color:var(--fg)"><img data-logoflip="" src="assets/jdux-logo.png" alt="JDUX" style="height:32px;width:auto;display:block"><span style="font:600 12px/1 'IBM Plex Sans';letter-spacing:.02em">jdux.design</span></div><span data-backtop="" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .3s ease">↑ Back to top</span><div style="display:flex;flex-direction:column;gap:6px;text-align:right"><span style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">©2026 · Brighton &amp; Hove</span><span class="footer-credit" style="font:400 10px/1.5 'IBM Plex Sans';letter-spacing:.02em;color:var(--muted)">Designed &amp; built by Jack Donovan with Claude — an AI-led design workflow.</span></div></div>
 </section>
 
 </div>
@@ -228,7 +233,7 @@ class Component extends DCLogic {
     // Standalone (no sized ancestor) → fill the viewport; embedded frames keep filling their container.
     const parentH = root.parentElement ? root.parentElement.clientHeight : 0;
     if (!parentH || root.clientHeight < 50) root.style.height = '100dvh';
-    const PHRASES = []; // ticker retired: H1 is static
+    const PHRASES = ["I build what\u2019s missing."];
     this.initLoader(root, PHRASES);
 
     // clocks
