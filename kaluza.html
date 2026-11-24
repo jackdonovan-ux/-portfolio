@@ -22,7 +22,9 @@
 </head>
 <body>
 <!-- REBUILD NOTE: delete this block on launch -->
-<div role="status" style="position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:9999;max-width:calc(100% - 32px);box-sizing:border-box;padding:11px 16px;border-radius:6px;background:#191815;color:#eceae4;font:500 10.5px/1.5 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.18)">Rebuilding: new site lands this week &middot; <a href="mailto:jack@jdux.design" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Email me</a></div>
+<style>.rebuild-note{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:9999;max-width:calc(100% - 32px);box-sizing:border-box;padding:11px 16px;border-radius:6px;background:#191815;color:#eceae4;border:1px solid rgba(236,234,228,.22);font:500 10.5px/1.5 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;text-align:center;white-space:nowrap}.rebuild-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}@media (max-width:900px){.rebuild-note{left:50%;transform:translateX(-50%);top:auto;bottom:18px;white-space:normal;box-shadow:0 4px 18px rgba(0,0,0,.18)}}</style>
+<div class="rebuild-note" role="status">Rebuilding: new site lands this week &middot; <a href="mailto:jack@jdux.design">Email me</a></div>
+<script>(function(){var n=document.querySelector('.rebuild-note');if(!n||matchMedia('(max-width:900px)').matches)return;n.style.transition='opacity .3s';document.addEventListener('scroll',function(e){var t=e.target.scrollTop!==undefined?e.target.scrollTop:window.scrollY;n.style.opacity=(t||window.scrollY)>40?'0':'1';n.style.pointerEvents=(t||window.scrollY)>40?'none':'auto';},true);})();</script>
 <!-- /REBUILD NOTE -->
 <x-dc>
 <helmet data-dc-atomics>
