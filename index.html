@@ -171,13 +171,26 @@ h1{white-space:normal !important}
 .bi-logos.sfade{transition:border-color .5s ease}
 .bi-logos.sfade > *{transition:border-color .6s ease;transition-delay:calc(var(--d,0) * 75ms)}
 .bi-logos.sfade:not(.in),.bi-logos.sfade:not(.in) > *{border-color:transparent !important}
-.bi-logos.sfade > * img{transition:opacity .8s ease,transform 1s cubic-bezier(.2,.7,.2,1) !important;transition-delay:.65s !important}
-.bi-logos.sfade:not(.in) > * img{opacity:0 !important;transform:scale(.92)}
+.bi-logos.sfade > * img{transition:opacity .45s ease,transform .8s cubic-bezier(.2,.8,.2,1) !important;transition-delay:calc(.55s + var(--f,0) * 65ms) !important;transform-origin:50% 50%;backface-visibility:hidden}
+.bi-logos.sfade:not(.in) > * img{opacity:0 !important;transform:perspective(420px) rotateX(-88deg)}
+.bi-logos > *:nth-child(1){--f:5}.bi-logos > *:nth-child(2){--f:1}.bi-logos > *:nth-child(3){--f:8}.bi-logos > *:nth-child(4){--f:3}.bi-logos > *:nth-child(5){--f:10}.bi-logos > *:nth-child(6){--f:0}.bi-logos > *:nth-child(7){--f:7}.bi-logos > *:nth-child(8){--f:11}.bi-logos > *:nth-child(9){--f:2}.bi-logos > *:nth-child(10){--f:6}.bi-logos > *:nth-child(11){--f:9}.bi-logos > *:nth-child(12){--f:4}
 .bi-logos > *:nth-child(1){--d:0}.bi-logos > *:nth-child(2){--d:1}.bi-logos > *:nth-child(3){--d:2}.bi-logos > *:nth-child(4){--d:3}.bi-logos > *:nth-child(5){--d:4}.bi-logos > *:nth-child(6){--d:5}.bi-logos > *:nth-child(7){--d:1}.bi-logos > *:nth-child(8){--d:2}.bi-logos > *:nth-child(9){--d:3}.bi-logos > *:nth-child(10){--d:4}.bi-logos > *:nth-child(11){--d:5}.bi-logos > *:nth-child(12){--d:6}
 .sfade > *:nth-child(2){--i:1}.sfade > *:nth-child(3){--i:2}.sfade > *:nth-child(4){--i:3}.sfade > *:nth-child(5){--i:4}.sfade > *:nth-child(6){--i:5}.sfade > *:nth-child(7){--i:6}.sfade > *:nth-child(8){--i:7}.sfade > *:nth-child(9){--i:8}.sfade > *:nth-child(10){--i:9}.sfade > *:nth-child(11){--i:10}.sfade > *:nth-child(12){--i:11}
 .sfade:not(.in) > * > *{opacity:0 !important}
 .lp.still .wrow > li::before{transform:none}.lp.still .wrow > li > a{opacity:1;transform:none}
 @media (max-width: 900px){header nav .nl{display:none !important}}
+/* Phones: the nav folds into a menu; the header keeps the logo, booking button, theme toggle and menu (26 Nov). */
+details.mnav{display:none;position:relative}
+details.mnav > summary{list-style:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--fg);box-sizing:border-box}
+details.mnav > summary::-webkit-details-marker{display:none}
+.mpanel{position:absolute;right:0;top:50px;min-width:220px;display:flex;flex-direction:column;padding:8px;background:var(--bg);border:1px solid var(--line2);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.14);z-index:60}
+.mpanel a{display:block !important;padding:13px 14px;border-radius:8px;text-decoration:none;color:var(--fg);font-size:16px}
+/* Nothing may push the page sideways on phones (e.g. the How I work ring mid-turn). */
+html,body{overflow-x:clip}
+.mpanel a:hover,.mpanel a:focus-visible{background:var(--panel)}
+@media (max-width: 900px){details.mnav{display:block}header nav{gap:10px !important}}
+@media (max-width: 600px){header .hloc,header .hcrumb{display:none !important}.nbook{padding:0 13px !important;font-size:13px !important;min-height:38px}}
+.nofx,.nofx *{transition-duration:0s !important;transition-delay:0s !important}
 </style>
 </helmet>
 <div class="{{ rootClass }}" ref="{{ setRoot }}" data-theme="{{ theme }}" data-tone="{{ tone }}" onMouseMove="{{ bpMove }}" onMouseLeave="{{ bpOut }}" style="--sd: 0; --mx: -500px; --my: -500px; --bpo: 0; --cx: -100px; --cy: -100px; --ring: 0; --con: 0; background: var(--pagebg); color: var(--fg); font-family: 'Geist', system-ui, sans-serif; min-height: 100vh; transition: background-color .9s ease, color .4s ease">
@@ -196,19 +209,20 @@ h1{white-space:normal !important}
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 3vw, 40px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
 <div style="display: flex; align-items: center; gap: 18px">
 <a href="#top" aria-label="JDUX home" style="display: block"><img src="assets/jdux-logo.png" alt="JDUX" style="height: 28px; width: auto; display: block; filter: var(--logo)"></a>
-<span style="position: relative; display: block; height: 32px; min-width: 260px">
+<span class="hloc" style="position: relative; display: block; height: 32px; min-width: 260px">
 <span style="{{ availStyle }}"><span>London &amp; Brighton, UK</span><span style="font-weight: 500; letter-spacing: .1em; opacity: .8">{{ localTime }} local time</span></span>
 <a href="#top" aria-hidden="{{ dockHidden }}" tabindex="-1" style="{{ dockStyle }}"><span style="position: relative; flex: none"><img src="assets/portrait-jack.jpg" alt="" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block"><span title="Available for new projects" style="position: absolute; right: -1px; bottom: -1px; width: 9px; height: 9px; border-radius: 50%; background: #2f7d4f; box-shadow: 0 0 0 2px var(--bg)"></span></span><span style="font-size: 14px; line-height: 1.2"><strong style="font-weight: 600">Jack Donovan</strong><span style="color: var(--muted)"> · Product &amp; Service Design Lead</span></span></a>
 </span>
 </div>
 <nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; font-size: 14px">
-<a href="#selected-work" class="{{ nav.case }}" onClick="{{ nav.caseGo }}" style="text-decoration: none; color: var(--muted)">Case studies</a>
+<a href="#selected-work" class="{{ nav.case }}" onClick="{{ nav.caseGo }}" style="text-decoration: none; color: var(--muted)">Projects</a>
 <a href="#writing" class="{{ nav.writing }}" onClick="{{ nav.writingGo }}" style="text-decoration: none; color: var(--muted)">Writing</a>
 <a href="#services" class="{{ nav.work }}" onClick="{{ nav.workGo }}" style="text-decoration: none; color: var(--muted)">Work with me</a>
 <a href="about.html" class="{{ nav.about }}" onClick="{{ nav.aboutGo }}" style="text-decoration: none; color: var(--muted)">About</a>
 <a href="#contact" class="{{ nav.contact }}" onClick="{{ nav.contactGo }}" style="text-decoration: none; color: var(--muted); font-weight: 600">Contact</a>
 <a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" class="nbook" style="display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 16px; font-weight: 500; white-space: nowrap">Book an intro call</a>
 <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width: 40px; height: 40px; border-radius: 50%; background: transparent; color: var(--fg); border: 1px solid var(--line3); cursor: pointer; font-size: 15px; line-height: 1">{{ themeIcon }}</button>
+<details class="mnav"><summary aria-label="Menu"><svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></summary><div class="mpanel"><a href="#selected-work">Projects</a><a href="#writing">Writing</a><a href="#services">Work with me</a><a href="about.html">About</a><a href="#contact">Contact</a></div></details>
 </nav>
 </div>
 <span aria-hidden="true" style="{{ depthStyle }}"></span>
@@ -316,8 +330,8 @@ h1{white-space:normal !important}
 
 <!-- SELECTED WORK: a text-led index, an easy way in for scrollers -->
 <section id="selected-work" aria-label="Selected work" data-tone="do" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(24px, 6vw, 96px) 136px">
-<div style="margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)">Selected work</div>
-<h2 class="bw" style="margin: 0 0 40px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>Case</span> <span>studies</span></h2>
+<div style="margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)">Projects</div>
+<h2 class="bw" style="margin: 0 0 40px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>Selected</span> <span>work</span></h2>
 <ol class="wrow" onMouseMove="{{ prevMove }}" onMouseLeave="{{ prevOut }}" style="list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line3)">
 <sc-for list="{{ index }}" as="r" hint-placeholder-count="5">
 <li>
@@ -407,7 +421,7 @@ h1{white-space:normal !important}
 <!-- WAYS TO WORK -->
 <section id="services" class="band-ink" aria-label="Ways to work together">
 <div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 136px clamp(24px, 6vw, 96px)">
-<div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>Ways to work together</span></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>Work with me</span></div>
 <div style="display: flex; flex-wrap: wrap; gap: 48px 72px; align-items: flex-start">
 <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; gap: 20px">
@@ -499,6 +513,10 @@ h1{white-space:normal !important}
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { film: 1, still: false, tone: 'hero', loader: true, lt: 0, lout: false, theme: 'light', h1in: false, caret: 'typing', typed: 0, stage: 0, open: 0, q: 0, fx: 'mono', docked: false, hold: false, qbar: false, qhold: false }; }
   componentDidMount() {
+    try { this._back = sessionStorage.getItem('jdux-intro') === '1'; } catch (e) { this._back = false; }
+    // Phone menu: close it after choosing a link or tapping elsewhere.
+    this._mnav = (e) => { try { const d = document.querySelector('details.mnav[open]'); if (d && (e.target.closest('.mpanel a') || !e.target.closest('details.mnav'))) d.open = false; } catch (x) {} };
+    document.addEventListener('click', this._mnav);
     let dark = false;
     // Light by default (JD, 24 Nov); the toggle still switches.
     try { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.setState({ cur: true }); } catch (e) {}
@@ -527,7 +545,7 @@ class Component extends DCLogic {
       const el = this._stats; if (!el) return;
       let rm = false; try { rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
       if (rm || this.state.still || typeof IntersectionObserver === 'undefined') { this.setState({ sp: 1 }); return; }
-      this._sio = new IntersectionObserver((ents) => { if (ents.some((en) => en.isIntersecting)) { this._sio.disconnect(); this._cuT = setTimeout(() => this.countUp(), 750); } }, { rootMargin: '0px 0px -25% 0px', threshold: 0.15 });
+      this._sio = new IntersectionObserver((ents) => { if (ents.some((en) => en.isIntersecting)) { this._sio.disconnect(); if (this._back) this.setState({ sp: 1 }); else this._cuT = setTimeout(() => this.countUp(), 750); } }, { rootMargin: '0px 0px -25% 0px', threshold: 0.15 });
       this._sio.observe(el);
     }, 80);
     this._stillCheck = () => { try { const d = document.documentElement; const st = d.scrollHeight <= window.innerHeight + 40; if (st && this._root) this._root.querySelectorAll('.bi, .wrow, .hiw, .sfade').forEach((el) => el.classList.add('in')); if (st !== !!this.state.still) this.setState({ still: st }); } catch (e) {} };
@@ -539,7 +557,7 @@ class Component extends DCLogic {
       const els = root.querySelectorAll('.bw, .rv, .bi, .wrow, .hiw, .sfade');
       let rm = false; try { rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
       if (rm) this.setState({ rm: true });
-      if (rm || typeof IntersectionObserver === 'undefined') { els.forEach((el) => el.classList.add('in')); return; }
+      if (rm || this._back || typeof IntersectionObserver === 'undefined') { root.classList.add('nofx'); els.forEach((el) => el.classList.add('in')); setTimeout(() => root.classList.remove('nofx'), 120); return; }
       try {
         this._tio = new IntersectionObserver((ents) => ents.forEach((en) => { if (en.isIntersecting) { const tn = en.target.getAttribute('data-tone'); if (tn && tn !== this.state.tone) this.setState({ tone: tn }); } }), { rootMargin: '-45% 0px -55% 0px', threshold: 0 });
         root.querySelectorAll('[data-tone]').forEach((el) => { if (el !== root) this._tio.observe(el); });
@@ -577,7 +595,7 @@ class Component extends DCLogic {
     if (!reduce) this._wrot = setInterval(() => this.setState({ wf: ((this.state.wf || 0) + 1) % 4 }), 4000);
     if (!reduce) this._rot = setInterval(() => {
       if (this.state.hold || this.state.stage < 9) return;
-      this.setState({ film: (this.state.film + 1) % 5 });
+      this.setState({ film: (this.state.film + 1) % 6 });
     }, 5000);
   }
   countUp() {
@@ -757,7 +775,7 @@ class Component extends DCLogic {
       const shown = st >= 9;
       return { ...m, href: m.href || '#', hasImg: !!m.img, hasLogo: !!m.logo, isText: !!m.text, isPortal: !!m.portal, tag: m.noTag ? '' : (m.soon ? 'Coming soon' : 'Read →'),
         pick: () => { if (m.img) this.setState({ film: i }); },
-        tile: 'grid-area: ' + m.area + '; position: relative; display: block; overflow: hidden; text-decoration: none; color: #fff; background: ' + (m.last && !shown ? 'transparent' : m.bg) + '; outline: ' + (m.last && st >= 7 && !shown ? '1px dashed var(--line3)' : '0') + '; outline-offset: -1px; transition: opacity .6s ease ' + ((order[m.area] - 1) * 220) + 'ms, transform .8s cubic-bezier(.2,.7,.2,1) ' + ((order[m.area] - 1) * 220) + 'ms, background-color .5s ease; opacity: ' + (shown ? '1' : '0') + '; transform: ' + (shown ? 'none' : (m.last ? 'scale(.96)' : 'translateY(12px)')) + (m.soon ? '; cursor: default' : ''),
+        tile: 'grid-area: ' + m.area + '; position: relative; display: block; overflow: hidden; text-decoration: none; color: #fff; background: ' + (m.last && !shown ? 'transparent' : (m.portal && fa === i ? 'var(--accent)' : m.bg)) + '; outline: ' + (m.last && st >= 7 && !shown ? '1px dashed var(--line3)' : '0') + '; outline-offset: -1px; transition: opacity .6s ease ' + ((order[m.area] - 1) * 220) + 'ms, transform .8s cubic-bezier(.2,.7,.2,1) ' + ((order[m.area] - 1) * 220) + 'ms, background-color 1s ease; opacity: ' + (shown ? '1' : '0') + '; transform: ' + (shown ? 'none' : (m.last ? 'scale(.96)' : 'translateY(12px)')) + (m.soon ? '; cursor: default' : ''),
         textStyle: 'position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; flex-direction: column; gap: 6px; transition: opacity .5s ease .15s; opacity: ' + (shown ? '1' : '0'),
         imgStyle: 'position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: ' + (m.pos || '50% 50%') + '; display: block; filter: ' + (on ? 'none' : 'grayscale(1) contrast(1.15)') + '; transform: scale(' + (on ? '1.03' : '1') + ')',
         logoStyle: m.img ? 'position: absolute; left: 18px; top: 18px; height: ' + Math.round(m.lh * (small ? 0.7 : 0.9)) + 'px; width: auto; max-width: 55%; object-fit: contain; object-position: left center; filter: brightness(0) invert(1) drop-shadow(0 1px 8px rgba(0,0,0,.35)); opacity: .9' : 'position: absolute; left: 18px; top: 18px; height: ' + m.lh + 'px; width: auto; max-width: 60%; object-fit: contain; object-position: left center; opacity: .9',
@@ -826,7 +844,7 @@ class Component extends DCLogic {
       nextQuote: () => this.qGo((this.state.q + 1) % qn),
       qHoldOn: () => { clearTimeout(this._qt); clearTimeout(this._qb); this.setState({ qhold: true, qbar: false }); },
       qHoldOff: () => { this.setState({ qhold: false }); this.qGo(this.state.q); },
-      qSegs: Q.map((_, i) => ({ fill: 'position: absolute; left: 0; top: 0; bottom: 0; background: var(--fg); width: ' + (i < qi ? '100%' : (i === qi ? (this.state.qbar ? '100%' : (this.state.qhold ? '100%' : '0')) : '0')) + '; transition: ' + (i === qi && this.state.qbar ? 'width 7s linear' : 'none') })),
+      qSegs: Q.map((_, i) => ({ fill: 'position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); width: ' + (i < qi ? '100%' : (i === qi ? (this.state.qbar ? '100%' : (this.state.qhold ? '100%' : '0')) : '0')) + '; transition: ' + (i === qi && this.state.qbar ? 'width 7s linear' : 'none') })),
       replay: () => this.startIntro(),
       in1: reveal(5), inT: reveal(6), in2: reveal(7), in3: reveal(8),
       navIn: 'transition: opacity .8s ease; opacity: ' + (st >= 5 ? '1' : '0') + ';',

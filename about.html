@@ -57,6 +57,17 @@ a{color:var(--fg)}a:hover{opacity:.8}
 @media (max-width: 900px){.body-grid{grid-template-columns:1fr !important}.toc-col{display:none}.glance{grid-template-columns:1fr 1fr !important}.stats{grid-template-columns:1fr !important}.ba{grid-template-columns:1fr !important}.growth{grid-template-columns:1fr 1fr !important}}
 .nl{transition:color .25s ease}.nl:hover,.nl:focus-visible,.nl.on{color:var(--fg) !important;opacity:1}
 @media (max-width: 900px){header nav .nl{display:none !important}}
+/* Phones: the nav folds into a menu; the header keeps the logo, booking button, theme toggle and menu (26 Nov). */
+details.mnav{display:none;position:relative}
+details.mnav > summary{list-style:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--fg);box-sizing:border-box}
+details.mnav > summary::-webkit-details-marker{display:none}
+.mpanel{position:absolute;right:0;top:50px;min-width:220px;display:flex;flex-direction:column;padding:8px;background:var(--bg);border:1px solid var(--line2);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.14);z-index:60}
+.mpanel a{display:block !important;padding:13px 14px;border-radius:8px;text-decoration:none;color:var(--fg);font-size:16px}
+/* Nothing may push the page sideways on phones (e.g. the How I work ring mid-turn). */
+html,body{overflow-x:clip}
+.mpanel a:hover,.mpanel a:focus-visible{background:var(--panel)}
+@media (max-width: 900px){details.mnav{display:block}header nav{gap:10px !important}}
+@media (max-width: 600px){header .hloc,header .hcrumb{display:none !important}.nbook{padding:0 13px !important;font-size:13px !important;min-height:38px}}
 </style>
 </helmet>
 <div class="{{ rootClass }}" ref="{{ setRoot }}" data-theme="{{ theme }}" onMouseMove="{{ move }}" onMouseLeave="{{ out }}" style="--cx: -100px; --cy: -100px; --ring: 0; --con: 0; background: var(--bg); color: var(--fg); font-family: 'Geist', system-ui, sans-serif">
@@ -68,17 +79,18 @@ a{color:var(--fg)}a:hover{opacity:.8}
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 3vw, 40px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
 <div style="display: flex; align-items: center; gap: 18px">
 <a href="index.html" aria-label="JDUX home" style="display: block"><img src="assets/jdux-logo.png" alt="JDUX" style="height: 28px; width: auto; display: block; filter: var(--logo)"></a>
-<span style="width: 1px; height: 18px; background: var(--line3)"></span>
-<span style="font-size: 14px; color: var(--muted)"><a href="index.html" style="text-decoration: none; color: var(--muted)">Home</a> / <span style="color: var(--fg)">About</span></span>
+<span class="hcrumb" style="width: 1px; height: 18px; background: var(--line3)"></span>
+<span class="hcrumb" style="font-size: 14px; color: var(--muted)"><a href="index.html" style="text-decoration: none; color: var(--muted)">Home</a> / <span style="color: var(--fg)">About</span></span>
 </div>
 <nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; font-size: 14px">
-<a href="index.html#selected-work" class="nl" style="text-decoration: none; color: var(--muted)">Case studies</a>
+<a href="index.html#selected-work" class="nl" style="text-decoration: none; color: var(--muted)">Projects</a>
 <a href="index.html#writing" class="nl" style="text-decoration: none; color: var(--muted)">Writing</a>
 <a href="index.html#services" class="nl" style="text-decoration: none; color: var(--muted)">Work with me</a>
 <a href="#about" class="nl on" aria-current="page" style="text-decoration: none; color: var(--muted)">About</a>
 <a href="index.html#contact" class="nl" style="text-decoration: none; color: var(--muted); font-weight: 600">Contact</a>
 <a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" class="nbook" style="display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 16px; font-weight: 500; white-space: nowrap">Book an intro call</a>
 <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width: 38px; height: 38px; border-radius: 50%; background: transparent; color: var(--fg); border: 1px solid var(--line3); cursor: pointer; font-size: 15px; line-height: 1">{{ themeIcon }}</button>
+<details class="mnav"><summary aria-label="Menu"><svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></summary><div class="mpanel"><a href="index.html#selected-work">Projects</a><a href="index.html#writing">Writing</a><a href="index.html#services">Work with me</a><a href="#about">About</a><a href="index.html#contact">Contact</a></div></details>
 </nav>
 </div>
 <span aria-hidden="true" style="{{ progressStyle }}"></span>
@@ -128,6 +140,9 @@ a{color:var(--fg)}a:hover{opacity:.8}
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { theme: 'light', active: 0, prog: 0, cur: false, lb: null }; }
   componentDidMount() {
+    // Phone menu: close it after choosing a link or tapping elsewhere.
+    this._mnav = (e) => { try { const d = document.querySelector('details.mnav[open]'); if (d && (e.target.closest('.mpanel a') || !e.target.closest('details.mnav'))) d.open = false; } catch (x) {} };
+    document.addEventListener('click', this._mnav);
     try { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.setState({ cur: true }); } catch (e) {}
     // Mark the section being read in the contents, and fill the progress line under the nav.
     this._onScroll = () => {
