@@ -1,403 +1,293 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<title>Ford Mach-e — Jack Donovan</title>
-<meta name="description" content="Evolving a 3D concept into a configurator worthy of the car.">
+<title>Ford Mach-E — Jack Donovan</title>
+<meta name="description" content="Helping EV buyers build their dream Mustang.">
 <link rel="canonical" href="https://jdux.design/ford.html">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Jack Donovan · jdux.design">
-<meta property="og:title" content="Ford Mach-e — Jack Donovan">
-<meta property="og:description" content="Evolving a 3D concept into a configurator worthy of the car.">
+<meta property="og:site_name" content="Jack Donovan">
+<meta property="og:title" content="Ford Mach-E — Jack Donovan">
+<meta property="og:description" content="Helping EV buyers build their dream Mustang.">
 <meta property="og:url" content="https://jdux.design/ford.html">
-<meta property="og:image" content="https://jdux.design/assets/case-ford.png">
+<meta property="og:image" content="https://jdux.design/assets/tile-ford.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ford Mach-e — Jack Donovan">
-<meta name="twitter:description" content="Evolving a 3D concept into a configurator worthy of the car.">
-<meta name="twitter:image" content="https://jdux.design/assets/case-ford.png">
+<meta name="twitter:title" content="Ford Mach-E — Jack Donovan">
+<meta name="twitter:description" content="Helping EV buyers build their dream Mustang.">
+<meta name="twitter:image" content="https://jdux.design/assets/tile-ford.jpg">
 <link rel="icon" type="image/png" href="assets/jdux-logo.png">
 <link rel="apple-touch-icon" href="assets/jdux-logo.png">
 </head>
 <body>
-<!-- REBUILD NOTE: delete this block on launch -->
-<style>.rebuild-note{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:9999;max-width:calc(100% - 32px);box-sizing:border-box;padding:11px 16px;border-radius:6px;background:#191815;color:#eceae4;border:1px solid rgba(236,234,228,.22);font:500 10.5px/1.5 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;text-align:center;white-space:nowrap}.rebuild-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}@media (max-width:900px){.rebuild-note{left:50%;transform:translateX(-50%);top:auto;bottom:18px;white-space:normal;box-shadow:0 4px 18px rgba(0,0,0,.18)}}</style>
-<div class="rebuild-note" role="status">Rebuilding: new site lands this week &middot; <a href="mailto:jack@jdux.design">Email me</a></div>
-<script>(function(){var n=document.querySelector('.rebuild-note');if(!n||matchMedia('(max-width:900px)').matches)return;n.style.transition='opacity .3s';document.addEventListener('scroll',function(e){var t=e.target.scrollTop!==undefined?e.target.scrollTop:window.scrollY;n.style.opacity=(t||window.scrollY)>40?'0':'1';n.style.pointerEvents=(t||window.scrollY)>40?'none':'auto';},true);})();</script>
-<!-- /REBUILD NOTE -->
 <x-dc>
-<helmet data-dc-atomics>
+<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="cursor.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&amp;display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}
-a{color:inherit;text-decoration:none}
-html,body{margin:0;padding:0}
-#cs-scroll::-webkit-scrollbar{width:0}
-@container cs (max-width:1080px){
-  .cs-body{grid-template-columns:1fr!important;gap:0!important}
-  .cs-body>*{min-width:0!important;max-width:100%!important}
-  .cs-body figure,.cs-body img,.cs-body video{max-width:100%!important}
-  .cs-rail{position:static!important;top:auto!important;margin-bottom:10px!important}
-  .cs-cols{grid-template-columns:1fr!important;gap:36px!important}
-}
-@container cs (max-width:820px){
-  #cs-nav{padding-left:22px!important;padding-right:22px!important}
-  .cs-hero{padding-left:22px!important;padding-right:22px!important;padding-top:118px!important}
-  .cs-sub{white-space:normal!important;font-size:clamp(1.35rem,5cqi,34px)!important}
-  .cs-body{padding-left:22px!important;padding-right:22px!important;padding-top:44px!important}
-  .cs-heroimg{padding-left:22px!important;padding-right:22px!important}
-  .cs-crumb{display:none!important}
-  .cs-rail{position:sticky!important;top:56px!important;z-index:24!important;background:var(--bg)!important;border-bottom:1px solid var(--line)!important;margin:0 -22px 40px!important;padding:0!important;display:block!important;max-width:none!important}
-  .cs-rail .cs-meta,.cs-rail .cs-clabel{display:none!important}
-  .cs-rail nav{flex-direction:row!important;gap:22px!important;overflow-x:auto!important;padding:12px 22px!important;white-space:nowrap;scrollbar-width:none;font-size:13px!important}
-  .cs-rail nav::-webkit-scrollbar{display:none}
-  .cs-rail nav a{flex:0 0 auto!important}
-}
+body{margin:0;background:#eceae4}
+a{color:var(--fg)}a:hover{opacity:.8}
+.cs{--bg:#eceae4;--stone:#e2dfd7;--fg:#191815;--muted:#66645c;--body:#3d3b36;--line:rgba(0,0,0,.16);--line2:rgba(0,0,0,.1);--line3:rgba(0,0,0,.24);--panel:#e2dfd7;--logo:invert(1);--accent:#0e5a5f;--accent-ink:#0e5a5f}
+.cs[data-theme="dark"]{--bg:#0c0c0d;--stone:#151514;--fg:#f2efe9;--muted:#9a988f;--body:#c9c6be;--line:rgba(255,255,255,.16);--line2:rgba(255,255,255,.1);--line3:rgba(255,255,255,.28);--panel:#1b1b1a;--logo:none;--accent:#13686d;--accent-ink:#7cc3bd}
+.ink{--fg:#f2efe9;--muted:#a3a097;--body:#c9c6be;--line:rgba(255,255,255,.16);--line3:rgba(255,255,255,.3);--accent-ink:#7cc3bd;background:#141413;color:var(--fg)}
+.lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.h2{margin:0;font-weight:400;font-size:clamp(1.7rem,2.4vw,2.3rem);line-height:1.12;letter-spacing:-.015em}
+.h3{margin:0;font-weight:400;font-size:1.25rem;line-height:1.3;letter-spacing:-.01em}
+.p{margin:0;font-size:17px;line-height:1.7;color:var(--body)}
+.slot{position:relative;display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;background:var(--panel);border:1px dashed var(--line3);color:var(--muted);font-size:12px;line-height:1.4}
+.cap{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--muted)}
+.toc a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--muted);font-size:14px;padding:6px 0;transition:color .25s ease}
+.toc a .tk{width:14px;height:1px;background:var(--line3);transition:width .3s ease,background-color .3s ease}
+.toc a.on{color:var(--fg)}.toc a.on .tk{width:28px;background:var(--fg)}
+.next img{filter:grayscale(1) contrast(1.1);transition:filter .7s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.next:hover img,.next:focus-visible img{filter:none;transform:scale(1.02)}
+@media (hover:none){.next img{filter:none}}
+.cdot,.cring{display:none}
+.cc,.cc *{cursor:none !important}
+.cc .cdot,.cc .cring{display:block;position:fixed;left:0;top:0;pointer-events:none;z-index:400;border-radius:50%;opacity:var(--con);mix-blend-mode:difference}
+.cc .cdot{width:8px;height:8px;margin:-4px 0 0 -4px;background:#fff;transform:translate(var(--cx),var(--cy)) scale(calc(1 - var(--ring) * .5));transition:transform .08s linear,opacity .2s ease}
+.cc .cring{width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid #fff;transform:translate(var(--cx),var(--cy)) scale(calc(1 + var(--ring) * .7));transition:transform .18s cubic-bezier(.2,.7,.2,1),opacity .2s ease;background:transparent}
+@media (prefers-reduced-motion: reduce){.next img,.toc a .tk{transition:none}}
+.ba{grid-template-columns:1fr !important}
+.zoom{display:block;width:100%;padding:0;margin:0;border:0;background:none;cursor:zoom-in;text-align:inherit;font:inherit;color:inherit}
+.zoom:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.zoom img{transition:transform .5s cubic-bezier(.2,.7,.2,1)}.zoom:hover img{transform:scale(1.005)}
+@media (max-width: 900px){.body-grid{grid-template-columns:1fr !important}.toc-col{display:none}.glance{grid-template-columns:1fr 1fr !important}.stats{grid-template-columns:1fr !important}.ba{grid-template-columns:1fr !important}.growth{grid-template-columns:1fr 1fr !important}}
+@media (max-width: 640px){.tr{grid-template-columns:1fr !important;gap:32px !important}}
+.nl{transition:color .25s ease}.nl:hover,.nl:focus-visible,.nl.on{color:var(--fg) !important;opacity:1}
+.rnext{margin-top:36px;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rnext.on{opacity:1;transform:none;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){.rnext{transition:none}}
+@media (max-width: 900px){header nav .nl{display:none !important}}
+@media (min-width: 901px){.meta-body{display:none !important}}
+.rstick{position:sticky;top:104px;max-height:calc(100vh - 128px);overflow-y:auto;scrollbar-width:none;padding-bottom:16px}.rstick::-webkit-scrollbar{display:none}
 </style>
 </helmet>
+<div class="{{ rootClass }}" ref="{{ setRoot }}" data-theme="{{ theme }}" onMouseMove="{{ move }}" onMouseLeave="{{ out }}" style="--cx: -100px; --cy: -100px; --ring: 0; --con: 0; background: var(--bg); color: var(--fg); font-family: 'Geist', system-ui, sans-serif">
+<div class="cring" aria-hidden="true"></div>
+<div class="cdot" aria-hidden="true"></div>
 
-<div id="cs-root" style="position:relative;width:100%;height:100dvh;max-width:100vw;overflow:hidden;container:cs / inline-size;--bg:#0c0c0d;--fg:#f2efe9;--muted:#8a887f;--line:rgba(255,255,255,.14);--panel:#141618;background:var(--bg);color:var(--fg);font-family:'IBM Plex Sans',system-ui,sans-serif">
-
-<div id="cs-progress" style="position:absolute;top:0;left:0;height:2px;width:0;background:var(--fg);z-index:32;transition:width .1s linear"></div>
-
-<div id="cs-nav" style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:22px 44px;background:transparent;border-bottom:1px solid transparent;transition:background .4s ease,backdrop-filter .4s ease,border-color .4s ease,padding .35s ease">
-<div style="display:flex;align-items:center;gap:18px">
-<a href="index.html" style="display:block;color:var(--fg)"><img data-logoflip src="assets/jdux-logo.png" alt="JDUX" style="height:30px;width:auto;display:block"></a>
-<span style="width:1px;height:20px;background:var(--line)"></span>
-<div class="cs-crumb" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)"><a href="index.html">Work</a> &nbsp;/&nbsp; <span style="color:var(--fg)">Ford Mach-e</span></div>
+<!-- NAV: same bar as the homepage, with a breadcrumb and a reading-progress line -->
+<header style="position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 72%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line2)">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 3vw, 40px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 18px">
+<a href="index.html" aria-label="JDUX home" style="display: block"><img src="assets/jdux-logo.png" alt="JDUX" style="height: 28px; width: auto; display: block; filter: var(--logo)"></a>
+<span style="width: 1px; height: 18px; background: var(--line3)"></span>
+<span style="font-size: 14px; color: var(--muted)"><a href="index.html#selected-work" style="text-decoration: none; color: var(--muted)">Case studies</a> / <span style="color: var(--fg)">Ford Mach-E</span></span>
 </div>
-<button id="cs-toggle" data-btn data-bfill="var(--fg)" data-bink="var(--bg)" style="font:500 10.5px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer;transition:background-color .3s ease,border-color .3s ease,color .3s ease">◐ DARK</button>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; font-size: 14px">
+<a href="index.html#selected-work" class="nl on" aria-current="true" style="text-decoration: none; color: var(--muted)">Case studies</a>
+<a href="index.html#writing" class="nl" style="text-decoration: none; color: var(--muted)">Writing</a>
+<a href="index.html#services" class="nl" style="text-decoration: none; color: var(--muted)">Work with me</a>
+<a href="about.html" class="nl" style="text-decoration: none; color: var(--muted)">About</a>
+<a href="index.html#contact" class="nl" style="text-decoration: none; color: var(--muted); font-weight: 600">Contact</a>
+<a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" class="nbook" style="display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 16px; font-weight: 500; white-space: nowrap">Book an intro call</a>
+<button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width: 38px; height: 38px; border-radius: 50%; background: transparent; color: var(--fg); border: 1px solid var(--line3); cursor: pointer; font-size: 15px; line-height: 1">{{ themeIcon }}</button>
+</nav>
 </div>
+<span aria-hidden="true" style="{{ progressStyle }}"></span>
+</header>
 
-<div id="cs-scroll" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
-
-<!-- HERO -->
-<section class="cs-hero" style="padding:150px 44px 0;max-width:1240px;margin:0 auto">
-<div style="display:flex;flex-wrap:wrap;gap:14px 26px;font:600 11px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:44px">
-<span>UX &amp; Content</span><span style="width:3px;height:3px;border-radius:50%;background:var(--muted);align-self:center"></span><span>Agency · OLIVER</span><span style="width:3px;height:3px;border-radius:50%;background:var(--muted);align-self:center"></span><span>2022</span><span style="width:3px;height:3px;border-radius:50%;background:var(--muted);align-self:center"></span><span>4 min read</span>
+<!-- COVER: the homepage tile, grown to full width -->
+<section aria-labelledby="cs-title" style="position: relative; height: min(78vh, 760px); min-height: 520px; overflow: hidden; background: #210a0b">
+<img src="assets/tile-ford.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.25) 55%, rgba(0,0,0,.78) 100%)"></span>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px) clamp(36px, 6vh, 64px); box-sizing: border-box; color: #fff; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 18px; max-width: 760px">
+<img src="assets/logo-ford.png" alt="" style="height: 30px; width: auto; align-self: flex-start; opacity: .95; filter: brightness(0) invert(1)">
+<h1 id="cs-title" style="margin: 0; font-weight: 400; font-size: clamp(2.2rem, 3.6vw, 3.4rem); line-height: 1.06; letter-spacing: -.02em">Helping EV buyers build their dream Mustang.</h1>
+<span style="font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; opacity: .9">Ford Mach-E · Automotive · 2022</span>
 </div>
-<h1 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(3rem,13.5cqi,132px);line-height:.9;letter-spacing:-.03em">Ford Mach-e</h1>
-<p class="cs-sub" style="margin:34px 0 0;white-space:nowrap;font-family:'EB Garamond',serif;font-weight:400;font-size:34px;line-height:1.28;letter-spacing:-.01em;color:var(--fg)">Evolving a 3D concept into a configurator worthy of the car.</p>
+<a href="#glance" style="display: inline-flex; align-items: center; min-height: 40px; text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; padding: 0 16px; font-size: 13px; font-weight: 500">4 min read ↓</a>
+</div>
 </section>
 
-<!-- HERO VIDEO -->
-<div class="cs-heroimg" style="max-width:1352px;margin:70px auto 0;padding:0 44px">
-<div id="ford-video" style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#0a0a0b">
-<video data-autovid muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"><source src="assets/ford-hero.mp4" type="video/mp4"></video>
+<!-- AT A GLANCE: the whole case in one screen for the 30-second scan -->
+<section id="glance" style="background: var(--stone)">
+<div style="max-width: 1440px; margin: 0 auto; padding: 72px clamp(24px, 5vw, 80px) 80px; box-sizing: border-box">
+<dl class="glance meta-body" style="margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-bottom: 36px; border-bottom: 1px solid var(--line)"><div><dt class="lbl">Role</dt><dd style="margin: 8px 0 0; font-size: 15px">Senior UX Designer · UX &amp; content</dd></div><div><dt class="lbl">Client</dt><dd style="margin: 8px 0 0; font-size: 15px">Ford UK · via OLIVER</dd></div><div><dt class="lbl">When</dt><dd style="margin: 8px 0 0; font-size: 15px">2022</dd></div><div><dt class="lbl">Reading time</dt><dd style="margin: 8px 0 0; font-size: 15px">4 minutes</dd></div></dl>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 40px 0 48px" class="glance"><div><div class="lbl">The problem</div><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.55">Ford's configurator didn't match the quality of the electric range: inconsistent and unreliable across regions.</p></div><div><div class="lbl">What I did</div><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.55">Owned the UX and content workstream, turning a single-scroll 3D concept into a configurator grounded in experience and behavioural principles.</p></div><div><div class="lbl">What changed</div><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.55">Approved by Ford's senior client team and selected for rollout across seven EU markets.</p></div></div>
+<div class="stats" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px">
+<sc-for list="{{ stats }}" as="s" hint-placeholder-count="3"><div style="border-top: 1px solid var(--line); padding: 28px 0 4px; display: flex; flex-direction: column; gap: 10px"><span style="font-weight: 300; font-size: clamp(2.4rem, 3.4vw, 3.2rem); line-height: 1; letter-spacing: -.03em">{{ s.n }}</span><span style="font-size: 14px; line-height: 1.5; color: var(--body); max-width: 30ch">{{ s.l }}</span></div></sc-for>
 </div>
 </div>
+</section>
 
-<!-- BODY -->
-<div class="cs-body" style="display:grid;grid-template-columns:280px 1fr;gap:96px;max-width:1240px;margin:0 auto;padding:120px 44px 0;align-items:start">
-
-<!-- STICKY RAIL -->
-<aside class="cs-rail" style="position:sticky;top:120px;align-self:start">
-<div class="cs-clabel" style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:22px">Overview</div>
-<div class="cs-meta" style="display:flex;flex-direction:column;gap:20px;padding-bottom:30px;border-bottom:1px solid var(--line)">
-<div><div style="font:600 9.5px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Role</div><div style="font-size:14px;color:var(--fg)">UX &amp; Content Design</div></div>
-<div><div style="font:600 9.5px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Agency</div><div style="font-size:14px;color:var(--fg)">OLIVER (IIG)</div></div>
-<div><div style="font:600 9.5px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Year</div><div style="font-size:14px;color:var(--fg)">2022</div></div>
-<div><div style="font:600 9.5px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Reading time</div><div style="font-size:14px;color:var(--fg)">4 minutes</div></div>
+<!-- PROTOTYPE: the Mach-E configurator walkthrough, the centrepiece of this case study -->
+<section aria-labelledby="proto-h" class="ink">
+<div style="max-width: 1440px; margin: 0 auto; padding: 88px clamp(24px, 5vw, 80px) 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 10px"><span class="lbl">The prototype</span><h2 id="proto-h" class="h2">The Mach-E configurator, in motion.</h2></div>
+<span style="font-size: 14px; color: var(--muted)">45-second walkthrough · sound off</span>
 </div>
-<div class="cs-clabel" style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:30px 0 18px">Contents</div>
-<nav style="display:flex;flex-direction:column;gap:13px;font-size:13.5px">
-<a data-cs-jump="ford-overview" style="cursor:pointer;color:var(--fg);transition:color .3s">Overview</a>
-<a data-cs-jump="ford-solution" style="cursor:pointer;color:var(--muted);transition:color .3s">The solution</a>
-<a data-cs-jump="ford-process" style="cursor:pointer;color:var(--muted);transition:color .3s">Process &amp; findings</a>
-<a data-cs-jump="ford-features" style="cursor:pointer;color:var(--muted);transition:color .3s">Design features</a>
-<a data-cs-jump="ford-outcomes" style="cursor:pointer;color:var(--muted);transition:color .3s">Outcomes</a>
+<video src="assets/ford-hero.mp4#t=0.1" controls="" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-label="Ford Mach-E configurator prototype walkthrough" style="display: block; width: 100%; height: auto; aspect-ratio: 3014 / 1800; border-radius: 6px; background: #000"></video>
+</div>
+</section>
+
+<!-- BODY: sticky contents with the current section marked, one reading column -->
+<div class="body-grid" style="max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); box-sizing: border-box; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 72px">
+<aside class="toc-col" style="padding-top: 104px">
+<div class="rstick">
+<div class="rmeta" style="padding-bottom: 24px; margin-bottom: 28px; border-bottom: 1px solid var(--line2)"><span class="lbl" style="display: block; margin-bottom: 22px">Overview</span><dl style="margin: 0; display: flex; flex-direction: column; gap: 14px"><div><dt class="lbl">Role</dt><dd style="margin: 6px 0 0; font-size: 15px; line-height: 1.4">Senior UX Designer · UX &amp; content</dd></div><div><dt class="lbl">Client</dt><dd style="margin: 6px 0 0; font-size: 15px; line-height: 1.4">Ford UK · via OLIVER</dd></div><div><dt class="lbl">When</dt><dd style="margin: 6px 0 0; font-size: 15px; line-height: 1.4">2022</dd></div><div><dt class="lbl">Reading time</dt><dd style="margin: 6px 0 0; font-size: 15px; line-height: 1.4">4 minutes</dd></div></dl></div>
+<nav class="toc" aria-label="Case study sections" style="display: flex; flex-direction: column">
+<span class="lbl" style="margin-bottom: 10px">Contents</span>
+<sc-for list="{{ toc }}" as="t" hint-placeholder-count="5"><a href="{{ t.href }}" class="{{ t.cls }}"><span class="tk"></span>{{ t.label }}</a></sc-for>
+<a href="wadi.html" class="{{ railNext }}" aria-label="View next case study: Wadi Safar" style="display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line2); text-decoration: none; color: var(--fg)"><img src="assets/tile-wadi.jpg" alt="" style="width: 60px; height: 44px; object-fit: cover; border-radius: 6px; flex: none"><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted)">View next case study</span><span style="font-size: 13px; line-height: 1.4; color: var(--accent-ink); font-weight: 500">Wadi Safar →</span></span></a>
 </nav>
+</div>
 </aside>
 
-<!-- CONTENT COLUMN -->
-<div style="max-width:760px">
+<main style="max-width: 780px; padding: 104px 0 120px; display: flex; flex-direction: column; gap: 120px">
 
-<!-- OVERVIEW -->
-<section id="ford-overview" style="scroll-margin-top:100px">
-<p style="margin:0 0 26px;font-family:'EB Garamond',serif;font-weight:400;font-size:27px;line-height:1.45;letter-spacing:-.01em;color:var(--fg)">As one of the world&#39;s leading legacy car manufacturers, Ford faces a significant challenge as its digital presence lags behind more agile competitors.</p>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">Their car configurator in particular suffers from corporate and regional misalignment, resulting in an inconsistent and unreliable user experience. Simply put: Ford&#39;s configurator didn&#39;t match the quality of the electric range.</p>
-<div style="margin:52px 0;padding:30px 34px;border-left:2px solid var(--fg);background:var(--panel);border-radius:0 8px 8px 0">
-<div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;transition:color .3s ease">Project brief</div>
-<p style="margin:0;font-size:16px;line-height:1.7;color:var(--fg)">Incorporate UX principles and behavioural science to transform an innovative 3D concept into an immersive, accessible, and industry-leading car configurator.</p>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-top:8px">
-<div><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:12px">Team</div><div style="font-size:15px;line-height:1.9;color:var(--fg)">Jack Donovan <span style="color:var(--muted)">— UX &amp; Content</span><br><span style="color:var(--muted);font-size:13.5px">Owning the UX &amp; content workstream, alongside —</span><br>Christian Cornwell <span style="color:var(--muted)">— UI</span><br>Lee Hefron <span style="color:var(--muted)">— Motion Design</span></div></div>
-<div><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:12px">Ownership</div><div style="font-size:15px;line-height:1.9;color:var(--fg)">UX &amp; content direction<br>User &amp; industry research<br>Information architecture<br>Content strategy<br>CGI &amp; motion collaboration</div></div>
-</div>
-<div style="margin:52px 0 0"><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:28px">Impact</div><div class="cs-cols" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start"><div><div style="font-family:'EB Garamond',serif;font-weight:500;font-size:clamp(3rem,6cqi,64px);line-height:1;letter-spacing:-.03em">7</div><p style="margin:12px 0 0;font-size:14px;line-height:1.55;color:var(--muted)">EU markets selected for rollout following senior client approval.</p></div></div></div>
+<section id="overview" data-sec="0" style="display: flex; flex-direction: column; gap: 22px">
+<div class="lbl">Overview</div>
+<p style="margin: 0; font-weight: 300; font-size: clamp(1.45rem, 2vw, 1.8rem); line-height: 1.4; letter-spacing: -.01em">As one of the world's leading legacy car manufacturers, Ford faces a significant challenge as its digital presence lags behind more agile competitors.</p><p class="p">Their car configurator in particular suffers from corporate and regional misalignment, resulting in an inconsistent and unreliable user experience. Simply put: Ford's configurator didn't match the quality of the electric range.</p><div style="padding: 22px 24px; border-radius: 12px; background: var(--panel)"><div class="lbl" style="margin-bottom: 8px">Project brief</div><p style="margin: 0; font-size: 17px; line-height: 1.55">Incorporate UX principles and behavioural science to transform an innovative 3D concept into an immersive, accessible, and industry-leading car configurator.</p></div><div class="tr" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; margin-top: 12px; padding-top: 28px; border-top: 1px solid var(--line)"><div><div class="lbl" style="margin-bottom: 8px">Team</div><p style="margin: 0 0 8px; font-size: 14px; color: var(--muted)">Owning the UX &amp; content workstream, alongside</p><ul style="list-style: none; margin: 0; padding: 0"><li style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line2); font-size: 15px"><span>Jack Donovan</span><span style="color: var(--muted)">UX &amp; Content</span></li><li style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line2); font-size: 15px"><span>Christian Cornwell</span><span style="color: var(--muted)">UI</span></li><li style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line2); font-size: 15px"><span>Lee Hefron</span><span style="color: var(--muted)">Motion Design</span></li></ul></div><div><div class="lbl" style="margin-bottom: 8px">My role</div><ul style="list-style: none; margin: 0; padding: 0"><li style="padding: 6px 0; font-size: 15px">UX &amp; content direction</li><li style="padding: 6px 0; font-size: 15px">User &amp; industry research</li><li style="padding: 6px 0; font-size: 15px">Information architecture</li><li style="padding: 6px 0; font-size: 15px">Content strategy</li><li style="padding: 6px 0; font-size: 15px">CGI &amp; motion collaboration</li></ul></div></div>
+</section>
+<section id="concept" data-sec="1" style="display: flex; flex-direction: column; gap: 22px">
+<div class="lbl">01 · The concept</div>
+<h2 class="h2">Where it started: a single-scroll 3D concept.</h2>
+<figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Original single-scroll concept"><img src="assets/ford-2-concept.png" alt="Original single-scroll concept" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Original single-scroll concept</figcaption></figure>
+</section>
+<section id="process" data-sec="2" style="display: flex; flex-direction: column; gap: 22px">
+<div class="lbl">02 · Process & findings</div>
+<h2 class="h2">An industry changing as fast as its customers.</h2>
+<p class="p">The automotive industry is shifting focus from forecourts to eCommerce, and from limitless customisation to more restricted, cost-effective production. An underlying feature of electric vehicles is their inherent build simplicity compared to traditional combustion engines — requiring considerably fewer moving parts, their motors are more reliable with less potential for faults.</p><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Competitor configurator benchmarking"><img src="assets/ford-3-competitors.png" alt="Competitor configurator benchmarking" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Competitor configurator benchmarking</figcaption></figure><p class="p">This efficiency is reflected in the digital experiences of industry innovators such as Tesla, Lotus, McLaren, and Polestar, who offer paired-back product configuration options that reduce cognitive load whilst encouraging sales.</p><p class="p">Since the electric vehicle market is still in its infancy, Ford's target customers have a wide range of technical knowledge. Many of them require clear answers to make an informed decision to shift to full electric.</p><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Experience principles"><img src="assets/ford-4-experience.png" alt="Experience principles" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Experience principles</figcaption></figure><p class="p">Condensing insights into three user profiles (curious browsers, on-the-fence buyers and converted enthusiasts), a resulting set of experience and behavioural principles validated our design decisions and steered feature requirements, including the tool's optimal sequencing.</p><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Behavioural principles"><img src="assets/ford-5-behavioural.png" alt="Behavioural principles" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Behavioural principles</figcaption></figure><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Optimal sequencing framework"><img src="assets/ford-6-sequencing.png" alt="Optimal sequencing framework" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Optimal sequencing framework</figcaption></figure>
+</section>
+<section id="features" data-sec="3" style="display: flex; flex-direction: column; gap: 22px">
+<div class="lbl">03 · Design features</div>
+<h2 class="h2">Features to cut through the crowd.</h2>
+<div style="display: flex; flex-direction: column; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line)"><h3 class="h3">A lite design system</h3><p class="p">A lite design system in line with Ford's recently revised brand guidelines — enough structure to guarantee consistency without over-engineering a single-purpose tool.</p><div class="ba" style="display: grid; grid-template-columns: 1fr; gap: 16px"><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Lite design system"><img src="assets/ford-7-designsystem.png" alt="Lite design system" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Lite design system</figcaption></figure></div></div><div style="display: flex; flex-direction: column; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line)"><h3 class="h3">Interactive 3D render</h3><p class="p">A 3D render of the vehicle, interactive on scroll or via the control panel, as the user navigates through the configurator sequence.</p><div class="ba" style="display: grid; grid-template-columns: 1fr; gap: 16px"><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Interface layouts, mobile and desktop"><img src="assets/ford-8-interface.png" alt="Interface layouts, mobile and desktop" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Interface layouts · mobile &amp; desktop</figcaption></figure></div></div><div style="display: flex; flex-direction: column; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line)"><h3 class="h3">Dynamic configuration cards</h3><p class="p">Dynamic configuration cards bank to the top of the screen once a step is completed. Each decision point has its own unique layout as a floating Configuration Card, with different states of exposure that grow and shrink as required.</p><div class="ba" style="display: grid; grid-template-columns: 1fr; gap: 16px"><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Configuration cards"><img src="assets/ford-9-cards.png" alt="Configuration cards" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Configuration cards</figcaption></figure></div></div><div style="display: flex; flex-direction: column; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line)"><h3 class="h3">Card-flip deep-dives</h3><p class="p">Card-flip deep-dives housing additional technical product information. To meet the information needs of our various user types, we let them flip Configuration Cards over to access a variety of deep-dive links and content.</p><div class="ba" style="display: grid; grid-template-columns: 1fr; gap: 16px"><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Card-flip deep-dive"><img src="assets/ford-10-deepdive.png" alt="Card-flip deep-dive" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Card-flip deep-dive</figcaption></figure></div></div><div style="display: flex; flex-direction: column; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line)"><h3 class="h3">Build review</h3><p class="p">A review of selected items, plus the full build summary, accessible throughout the experience. Staying true to the immersive single-scroll concept, we added an expandable navigation panel offering a dynamic Build Review.</p><div class="ba" style="display: grid; grid-template-columns: 1fr; gap: 16px"><figure style="margin: 0"><button type="button" class="zoom" onClick="{{ zoom }}" aria-label="View larger: Build review navigation"><img src="assets/ford-11-navigation.png" alt="Build review navigation" style="display: block; width: 100%; height: auto; border-radius: 4px; background: var(--panel)"></button><figcaption class="cap">Build review · fast furnished navigation</figcaption></figure></div></div>
+</section>
+<section id="outcomes" data-sec="4" style="display: flex; flex-direction: column; gap: 22px">
+<div class="lbl">04 · Outcomes</div>
+<h2 class="h2">Approved for rollout across seven EU markets.</h2>
+<p class="p">The design was approved by Ford's senior client team and selected for rollout across seven EU markets. Working alongside Ford's technology partners, we recommended a 2D pre-rendered engine over WebGL — a decision driven by performance consistency across markets rather than visual ambition alone.</p>
 </section>
 
-<!-- SOLUTION -->
-<section id="ford-solution" style="scroll-margin-top:100px;padding-top:96px">
-<div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:40px"><h2 style="margin:0;font:600 11px/1 'IBM Plex Mono';letter-spacing:.22em;text-transform:uppercase;color:var(--fg)">The original concept</h2><span style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">01</span></div>
-<figure style="margin:0"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-2-concept.png" alt="Original single-scroll concept" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Original single-scroll concept</figcaption></figure>
+<section id="reflection" hidden data-sec="5" style="display: none; flex-direction: column; gap: 16px; padding: 28px; border: 1px dashed var(--line3)">
+<div class="lbl">Optional · What I’d do differently</div>
+<p class="p" style="color: var(--muted)">[Two or three sentences in your own words. Hiring managers often look for this; leave it out if there’s nothing honest to say.]</p>
 </section>
 
-<!-- PROCESS -->
-<section id="ford-process" style="scroll-margin-top:100px;padding-top:96px">
-<div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:40px"><h2 style="margin:0;font:600 11px/1 'IBM Plex Mono';letter-spacing:.22em;text-transform:uppercase;color:var(--fg)">Process &amp; findings</h2><span style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">02</span></div>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">The automotive industry is shifting focus from forecourts to eCommerce, and from limitless customisation to more restricted, cost-effective production. An underlying feature of electric vehicles is their inherent build simplicity compared to traditional combustion engines — requiring considerably fewer moving parts, their motors are more reliable with less potential for faults.</p>
-<figure style="margin:44px 0 34px"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-3-competitors.png" alt="Competitor configurator benchmarking" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Competitor configurator benchmarking</figcaption></figure>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">This efficiency is reflected in the digital experiences of industry innovators such as Tesla, Lotus, McLaren, and Polestar, who offer paired-back product configuration options that reduce cognitive load whilst encouraging sales.</p>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">Since the electric vehicle market is still in its infancy, Ford&#39;s target customers have a wide range of technical knowledge. Many of them require clear answers to make an informed decision to shift to full electric.</p>
-<figure style="margin:44px 0 40px"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-4-experience.png" alt="Experience principles" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Experience principles</figcaption></figure>
-<p style="margin:0 0 40px;font-size:18px;line-height:1.75;color:var(--fg)">Condensing insights into three user profiles, a resulting set of experience and behavioural principles validated our design decisions and steered feature requirements, including the tool&#39;s optimal sequencing.</p>
-<figure style="margin:0 0 0"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-5-behavioural.png" alt="Behavioural principles" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Behavioural principles</figcaption></figure>
-<figure style="margin:24px 0 0"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-6-sequencing.png" alt="Optimal sequencing framework" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Optimal sequencing framework</figcaption></figure>
-</section>
-
-<!-- DESIGN FEATURES -->
-<section id="ford-features" style="scroll-margin-top:100px;padding-top:96px">
-<div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:40px"><h2 style="margin:0;font:600 11px/1 'IBM Plex Mono';letter-spacing:.22em;text-transform:uppercase;color:var(--fg)">Design features</h2><span style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">03</span></div>
-
-<div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px"><span style="font:600 11px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--muted)">1 / 5</span><h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:26px;letter-spacing:-.01em">A lite design system</h3></div>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">A lite design system in line with Ford&#39;s recently revised brand guidelines — enough structure to guarantee consistency without over-engineering a single-purpose tool.</p>
-<figure style="margin:0 0 60px"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-7-designsystem.png" alt="Lite design system" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Lite design system</figcaption></figure>
-
-<div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px"><span style="font:600 11px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--muted)">2 / 5</span><h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:26px;letter-spacing:-.01em">Interactive 3D render</h3></div>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">A 3D render of the vehicle, interactive on scroll or via the control panel, as the user navigates through the configurator sequence.</p>
-<figure style="margin:0 0 60px"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-8-interface.png" alt="Interface layouts" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Interface layouts · mobile &amp; desktop</figcaption></figure>
-
-<div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px"><span style="font:600 11px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--muted)">3 / 5</span><h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:26px;letter-spacing:-.01em">Dynamic configuration cards</h3></div>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">Dynamic configuration cards bank to the top of the screen once a step is completed. Each decision point has its own unique layout as a floating Configuration Card, with different states of exposure that grow and shrink as required.</p>
-<figure style="margin:0 0 60px"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-9-cards.png" alt="Configuration cards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Configuration cards</figcaption></figure>
-
-<div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px"><span style="font:600 11px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--muted)">4 / 5</span><h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:26px;letter-spacing:-.01em">Card-flip deep-dives</h3></div>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">Card-flip deep-dives housing additional technical product information. To meet the information needs of our various user types, we let them flip Configuration Cards over to access a variety of deep-dive links and content.</p>
-<figure style="margin:0 0 60px"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-10-deepdive.png" alt="Card-flip deep-dive" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Card-flip deep-dive</figcaption></figure>
-
-<div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px"><span style="font:600 11px/1 'IBM Plex Sans';letter-spacing:.14em;color:var(--muted)">5 / 5</span><h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:26px;letter-spacing:-.01em">Build review</h3></div>
-<p style="margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--fg)">A review of selected items, plus the full build summary, accessible throughout the experience. Staying true to the immersive single-scroll concept, we added an expandable navigation panel offering a dynamic Build Review.</p>
-<figure style="margin:0"><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1441/811;background:#0a0e1a"><img data-lightbox src="assets/ford-11-navigation.png" alt="Build review panel" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div><figcaption style="margin-top:12px;font:600 10px/1.5 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Build review · fast furnished navigation</figcaption></figure>
-</section>
-
-</div>
+</main>
 </div>
 
-<!-- OUTCOMES -->
-<section id="ford-outcomes" style="scroll-margin-top:100px;max-width:1240px;margin:0 auto;padding:120px 44px 0">
-<div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:56px"><h2 style="margin:0;font:600 11px/1 'IBM Plex Mono';letter-spacing:.22em;text-transform:uppercase;color:var(--fg)">Outcomes</h2><span style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">04</span></div>
-<div style="max-width:60ch">
-<p style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:28px;line-height:1.4;letter-spacing:-.01em;color:var(--fg)">The design was approved by Ford&#39;s senior client team and selected for rollout across seven EU markets. Working alongside Ford&#39;s technology partners, we recommended a 2D pre-rendered engine over WebGL — a decision driven by performance consistency across markets rather than visual ambition alone.</p>
+<!-- IMAGE VIEWER: any case study image opens full screen -->
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="Image viewer" tabindex="-1" ref="{{ setLb }}" onClick="{{ lbClose }}" onKeyDown="{{ lbKey }}" style="position: fixed; inset: 0; z-index: 300; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 64px clamp(16px, 4vw, 56px) 32px; box-sizing: border-box; background: rgba(12,12,13,.94); cursor: zoom-out">
+<img src="{{ lb.src }}" alt="{{ lb.alt }}" style="display: block; max-width: 100%; max-height: calc(100vh - 150px); object-fit: contain">
+<p style="margin: 0; max-width: 70ch; text-align: center; font-size: 14px; line-height: 1.5; color: #c9c6be">{{ lb.cap }}</p>
+<button type="button" onClick="{{ lbClose }}" aria-label="Close image" style="position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer">×</button>
+</div>
+</sc-if>
+
+<!-- NEXT PROJECT: the next homepage tile, so the work reads as a series -->
+<section aria-label="More case studies" style="border-top: 1px solid var(--line)">
+<div style="max-width: 1440px; margin: 0 auto; padding: 64px clamp(24px, 5vw, 80px) 88px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px"><span class="lbl">Next case study</span><a href="index.html#selected-work" style="font-size: 14px; text-decoration: none; color: var(--muted)">← All work</a></div>
+<a href="wadi.html" class="next" aria-label="Next case study: Wadi Safar" style="position: relative; display: block; height: 360px; overflow: hidden; background: #2c2010; color: #fff; text-decoration: none">
+<img src="assets/tile-wadi.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.75) 100%)"></span>
+<img src="assets/logo-mof-white.png" alt="" style="position: absolute; top: 24px; left: 28px; height: 30px; width: auto; filter: brightness(0) invert(1); opacity: .9">
+<span style="position: absolute; left: 28px; right: 28px; bottom: 26px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px">
+<span style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; opacity: .9">Hospitality · 2021</span><span style="font-weight: 400; font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -.01em">A bilingual app to sell a kingdom’s future vision.</span></span>
+<span style="flex: none; font-size: 14px; font-weight: 500">Read →</span>
+</span>
+</a>
 </div>
 </section>
 
-<!-- PREV / NEXT -->
-<section style="max-width:1240px;margin:0 auto;padding:130px 44px 0">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid var(--line);padding-top:40px">
-<a data-pn data-prev href="kaluza.html" style="position:relative;display:block"><div id="cs-prev-img" style="position:absolute;left:0;bottom:100%;margin-bottom:22px;width:230px;height:146px;border-radius:8px;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;background:#10222a url('assets/case-kaluza.jpeg') center/cover;box-shadow:0 26px 54px -26px rgba(0,0,0,.75)"></div><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;transition:color .3s ease">← Previous</div><div style="font-family:'EB Garamond',serif;font-weight:400;font-size:40px;letter-spacing:-.02em">Kaluza</div></a>
-<a href="practi.html" data-next data-pn style="position:relative;display:block;text-align:right"><div id="cs-next-img" style="position:absolute;right:0;bottom:100%;margin-bottom:22px;width:230px;height:146px;border-radius:8px;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;background:#1a2830 url('assets/case-practi.png') center/cover;box-shadow:0 26px 54px -26px rgba(0,0,0,.75)"></div><div style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;transition:color .3s ease">Next project →</div><div style="font-family:'EB Garamond',serif;font-weight:400;font-size:40px;letter-spacing:-.02em">Practi Health</div></a>
+<!-- CONTACT: identical to the homepage close -->
+<section id="contact" class="ink">
+<div style="max-width: 1440px; margin: 0 auto; padding: 104px clamp(24px, 5vw, 80px) 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+<h2 style="margin: 0; font-weight: 400; font-size: clamp(2.2rem, 3.6vw, 3.4rem); line-height: 1.05; letter-spacing: -.02em">Let’s build what’s missing.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--body); max-width: 520px">Need some fresh eyes on a problem? A short intro call is the quickest way to see whether I can help.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px">
+<a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 46px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 22px; font-size: 15px; font-weight: 500">Book an intro call →</a>
+<a href="mailto:jack@jdux.design" style="display: inline-flex; align-items: center; min-height: 46px; text-decoration: none; color: var(--fg); border: 1px solid var(--line3); border-radius: 999px; padding: 0 20px; font-size: 15px; font-weight: 500">Email me</a>
 </div>
-</section>
-
-<!-- FOOTER -->
-<footer style="max-width:1240px;margin:0 auto;padding:130px 44px 70px">
-<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap"><h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:500;font-size:72px;line-height:1;letter-spacing:-.02em">Get in touch.</h2><a href="mailto:jack@jdux.design" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:15px 22px;transition:background-color .3s ease,color .3s ease,border-color .3s ease" data-btn="" data-bfill="var(--fg)" data-bink="var(--bg)">Email me →</a></div>
-<div style="margin-top:64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);padding-top:30px"><div style="display:flex;align-items:center;gap:14px;color:var(--fg)"><img data-logoflip src="assets/jdux-logo.png" alt="JDUX" style="height:26px;width:auto;display:block"><span style="font:600 12px/1 'IBM Plex Sans';letter-spacing:.02em">jdux.design</span></div><span data-backtop="" style="font:600 11px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .3s ease">↑ Back to top</span><div style="display:flex;flex-direction:column;gap:6px;text-align:right"><span style="font:600 10px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">©2026 · London &amp; Brighton</span><span style="font:400 10px/1.6 'IBM Plex Sans';letter-spacing:.02em;color:var(--muted)">Designed &amp; built by Jack Donovan with Claude — an AI-led design workflow.</span></div></div>
+<footer style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 88px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted)">
+<span>©2026 · London &amp; Brighton</span>
+<a href="#" style="color: var(--muted); text-decoration: none">↑ Back to top</a>
+<span>Designed &amp; built by Jack Donovan with Claude.</span>
 </footer>
-
-<div style="height:40px"></div>
 </div>
+</section>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8600}}'>
 class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { theme: 'light', active: 0, prog: 0, cur: false, lb: null }; }
   componentDidMount() {
-    const root = document.getElementById('cs-root');
-    this.initButtons(root);
-    Array.from(document.querySelectorAll('[data-pn]')).forEach(function(a){
-      var over = a.querySelector('div:not([id])');
-      if (!over) return;
-      a.addEventListener('mouseenter', function(){ over.style.color = 'var(--fg)'; });
-      a.addEventListener('mouseleave', function(){ over.style.color = 'var(--muted)'; });
-    });
-    this.initVideos(root);
-    const scroller = document.getElementById('cs-scroll');
-    const nav = document.getElementById('cs-nav');
-    const prog = document.getElementById('cs-progress');
-    const toggle = document.getElementById('cs-toggle');
-    const backtop = root.querySelector('[data-backtop]');
-    if (backtop) {
-      backtop.addEventListener('mouseenter', () => { backtop.style.color = 'var(--fg)'; });
-      backtop.addEventListener('mouseleave', () => { backtop.style.color = 'var(--muted)'; });
-      backtop.addEventListener('click', () => { if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-
-    const modes = {
-      dark:  {'--bg':'#0c0c0d','--fg':'#f2efe9','--muted':'#8a887f','--line':'rgba(255,255,255,.14)','--panel':'#141618'},
-      light: {'--bg':'#efece4','--fg':'#191815','--muted':'#77705f','--line':'rgba(0,0,0,.16)','--panel':'#e4e0d6'}
+    setTimeout(() => { try { document.querySelectorAll('video[autoplay]').forEach((v) => { v.muted = true; v.defaultMuted = true; v.playsInline = true; const pr = v.play && v.play(); if (pr && pr.catch) pr.catch(() => {}); }); } catch (e) {} }, 120);
+    try { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.setState({ cur: true }); } catch (e) {}
+    // Mark the section being read in the contents, and fill the progress line under the nav.
+    this._onScroll = () => {
+      try {
+        const d = document.documentElement, h = Math.max(1, d.scrollHeight - window.innerHeight);
+        const secs = this._root ? this._root.querySelectorAll('[data-sec]') : [];
+        let a = 0;
+        secs.forEach((s, i) => { if (s.getBoundingClientRect().top < window.innerHeight * 0.4) a = i; });
+        this.setState({ prog: Math.min(1, Math.max(0, (window.scrollY || d.scrollTop || 0) / h)), active: a });
+      } catch (e) {}
     };
-    let gm = 'dark';
-    if (toggle && root) {
-      toggle.addEventListener('click', () => {
-        gm = gm === 'dark' ? 'light' : 'dark';
-        const v = modes[gm]; for (const k in v) root.style.setProperty(k, v[k]);
-        toggle.textContent = gm === 'dark' ? '\u25d0 DARK' : '\u25d1 LIGHT';
-        root.querySelectorAll('[data-logoflip]').forEach(l => l.style.filter = gm === 'light' ? 'invert(1)' : 'none');
-        var _cs=getComputedStyle(root),_fg=_cs.getPropertyValue('--fg').trim(),_ln=_cs.getPropertyValue('--line').trim();
-        root.querySelectorAll('[data-btn]').forEach(b => { b.style.backgroundColor='transparent'; b.style.color=_fg; b.style.borderColor=_ln; b._bb=null; b._hv=0; });
-      });
-    }
-
-    const links = Array.from(document.querySelectorAll('[data-cs-jump]'));
-    const sections = links.map(l => document.getElementById(l.dataset.csJump));
-    links.forEach((l, i) => {
-      l.addEventListener('click', () => {
-        const t = sections[i];
-        if (t && scroller) scroller.scrollTo({ top: t.offsetTop - 88, behavior: 'smooth' });
-      });
-      l.addEventListener('mouseenter', () => { l.dataset.hovering = '1'; l.style.color = 'var(--fg)'; });
-      l.addEventListener('mouseleave', () => { delete l.dataset.hovering; l.style.color = l.dataset.active === '1' ? 'var(--fg)' : 'var(--muted)'; });
-    });
-
-    const onScroll = () => {
-      if (!scroller) return;
-      const st = scroller.scrollTop;
-      if (nav) {
-        const sc = st > 20;
-        nav.style.background = sc ? 'color-mix(in srgb, var(--bg) 30%, transparent)' : 'transparent';
-        nav.style.backdropFilter = sc ? 'blur(14px)' : 'none';
-        nav.style.webkitBackdropFilter = sc ? 'blur(14px)' : 'none';
-        nav.style.borderBottomColor = sc ? 'var(--line)' : 'transparent';
-        nav.style.padding = sc ? '13px 44px' : '22px 44px';
-      }
-      if (prog) {
-        const max = scroller.scrollHeight - scroller.clientHeight;
-        prog.style.width = (max > 0 ? (st / max) * 100 : 0) + '%';
-      }
-      let act = 0;
-      sections.forEach((s, i) => { if (s && s.offsetTop - 130 <= st) act = i; });
-      links.forEach((l, i) => { l.dataset.active = i === act ? '1' : '0'; if (!l.dataset.hovering) l.style.color = i === act ? 'var(--fg)' : 'var(--muted)'; });
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
+  componentWillUnmount() { if (this._onScroll) window.removeEventListener('scroll', this._onScroll); try { document.body.style.overflow = ''; } catch (e) {} }
+  renderVals() {
+    const labels = [["#overview", "Overview"], ["#concept", "The concept"], ["#process", "Process & findings"], ["#features", "Design features"], ["#outcomes", "Outcomes"]];
+    return {
+      setRoot: (el) => { this._root = el; },
+      // Full-screen image viewer: click any image; Esc, the × or a click anywhere closes it, and focus returns to the image.
+      lbOpen: !!this.state.lb,
+      lb: this.state.lb || { src: '', alt: '', cap: '' },
+      zoom: (e) => {
+        const b = e.currentTarget, img = b && b.querySelector('img'); if (!img) return;
+        const fc = b.closest('figure') && b.closest('figure').querySelector('figcaption');
+        this._lbFrom = b;
+        try { document.body.style.overflow = 'hidden'; } catch (x) {}
+        this.setState({ lb: { src: img.getAttribute('src'), alt: img.getAttribute('alt') || '', cap: fc ? fc.textContent : '' } });
+      },
+      setLb: (el) => { if (el) { try { el.focus(); } catch (x) {} } },
+      lbClose: () => { this.setState({ lb: null }); try { document.body.style.overflow = ''; } catch (x) {} const b = this._lbFrom; if (b) setTimeout(() => { try { b.focus(); } catch (x) {} }, 0); },
+      lbKey: (e) => { if (e.key === 'Escape') { e.stopPropagation(); this.setState({ lb: null }); try { document.body.style.overflow = ''; } catch (x) {} const b = this._lbFrom; if (b) setTimeout(() => { try { b.focus(); } catch (x) {} }, 0); } },
+      theme: this.state.theme,
+      rootClass: 'cs' + (this.state.cur ? ' cc' : ''),
+      themeIcon: this.state.theme === 'dark' ? '☀' : '◐',
+      themeLabel: this.state.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+      toggleTheme: () => this.setState({ theme: this.state.theme === 'dark' ? 'light' : 'dark' }),
+      progressStyle: 'position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--fg); transform-origin: 0 50%; transform: scaleX(' + this.state.prog + ')',
+      move: (e) => {
+        const r = this._root; if (!r) return;
+        r.style.setProperty('--cx', e.clientX + 'px'); r.style.setProperty('--cy', e.clientY + 'px'); r.style.setProperty('--con', '1');
+        r.style.setProperty('--ring', e.target && e.target.closest && e.target.closest('a, button') ? '1' : '0');
+      },
+      out: () => { const r = this._root; if (r) r.style.setProperty('--con', '0'); },
+      railNext: 'rnext' + ((this.state.active || 0) > 0 ? ' on' : ''),
+      toc: labels.map((l, i) => ({ href: l[0], label: l[1], cls: i === this.state.active ? 'on' : '' })),
+      // Live Kaluza page figures (checked 24 Nov); AU team corrected to one to four (JD, 25 Nov).
+      stats: [{"n": "7", "l": "EU markets selected for rollout following senior client approval."}],
+      growth: [
+        { n: '01', h: 'First designer', t: 'On the ground in Melbourne' },
+        { n: '02', h: 'Scaled to four', t: 'The recognised UX/UI authority across clients' },
+        { n: '03', h: 'Promoted successor', t: 'My backfill now leads the AU team' },
+        { n: '04', h: 'London, +5 managed', t: 'A second team, developed against agreed goals' }
+      ],
+      subs: [
+        { t: 'Design maturity', img: 'Existing four-image gallery, with captions' },
+        { t: 'Team structure', img: 'Existing image' },
+        { t: 'Delivery at scale', img: 'Existing process diagram, with caption' }
+      ],
+      compare: [
+        { t: 'Direct Debit → payment arrangements & hardship' },
+        { t: 'Transactions table' },
+        { t: 'Billing detail' }
+      ]
     };
-    if (scroller) {
-      let tk = false;
-      scroller.addEventListener('scroll', () => { if (!tk) { tk = true; requestAnimationFrame(() => { onScroll(); tk = false; }); } }, { passive: true });
-      onScroll();
-    }
-
-    const nextLink = document.querySelector('[data-next]');
-    const nextImg = document.getElementById('cs-next-img');
-    if (nextLink && nextImg) {
-      nextLink.addEventListener('mouseenter', () => { nextImg.style.opacity = '1'; nextImg.style.transform = 'translateY(0)'; });
-      nextLink.addEventListener('mouseleave', () => { nextImg.style.opacity = '0'; nextImg.style.transform = 'translateY(8px)'; });
-    }
-    const prevLink = document.querySelector('[data-prev]');
-    const prevImg = document.getElementById('cs-prev-img');
-    if (prevLink && prevImg) {
-      prevLink.addEventListener('mouseenter', () => { prevImg.style.opacity = '1'; prevImg.style.transform = 'translateY(0)'; });
-      prevLink.addEventListener('mouseleave', () => { prevImg.style.opacity = '0'; prevImg.style.transform = 'translateY(8px)'; });
-    }
   }
-
-  initButtons(root) {
-    if (!root) return;
-    const resolve = (el, v) => (v && v.indexOf('var(') === 0) ? (getComputedStyle(el).getPropertyValue(v.slice(4, -1).trim()).trim() || v) : v;
-    root.querySelectorAll('[data-btn]').forEach(b => {
-      b.addEventListener('mouseenter', () => {
-        if (!b._hv) { const cs = getComputedStyle(b); b._bb = { bg: cs.backgroundColor, fg: cs.color, bd: cs.borderTopColor }; b._hv = 1; }
-        const fill = resolve(b, b.dataset.bfill), ink = resolve(b, b.dataset.bink);
-        b.style.backgroundColor = fill; b.style.color = ink; b.style.borderColor = fill;
-      });
-      b.addEventListener('mouseleave', () => { b._hv = 0; if (b._bb) { b.style.backgroundColor = b._bb.bg; b.style.color = b._bb.fg; b.style.borderColor = b._bb.bd; } });
-    });
-  }
-
-  initVideos(root) {
-    if (!root) return;
-    const vids = Array.from(root.querySelectorAll('[data-autovid]'));
-    if (!vids.length) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        const v = e.target;
-        if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
-        else v.pause();
-      });
-    }, { threshold: 0.25 });
-    vids.forEach(v => { v.muted = true; v.loop = true; v.playsInline = true; io.observe(v); });
-  }
-
-  renderVals() { return {}; }
 }
 </script>
-<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c0c0d"/><text x="50" y="58" font-family="Georgia,'EB Garamond',serif" font-size="30" letter-spacing="1" fill="#f2efe9" text-anchor="middle">JD</text><text x="50" y="76" font-family="monospace" font-size="6.5" letter-spacing="2" fill="#8a887f" text-anchor="middle">JDUX.DESIGN</text></svg></template>
-<style>
-[data-lightbox]{cursor:zoom-in}
-@container cs (max-width:820px){[data-lightbox]{cursor:default}}
-.jdux-lightbox-overlay{position:fixed;inset:0;background:rgba(10,9,7,.92);z-index:99999;display:none;align-items:center;justify-content:center;padding:32px;opacity:0;transition:opacity .25s ease}
-.jdux-lightbox-overlay.jdux-lb-open{display:flex}
-.jdux-lightbox-overlay.jdux-lb-show{opacity:1}
-.jdux-lightbox-content{max-width:92vw;max-height:88vh;display:flex;align-items:center;justify-content:center}
-.jdux-lightbox-content img,.jdux-lightbox-content video{max-width:92vw;max-height:88vh;width:auto;height:auto;object-fit:contain;display:block;box-shadow:0 30px 80px rgba(0,0,0,.5);border-radius:2px}
-.jdux-lightbox-close{position:fixed;top:24px;right:28px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease;font-family:system-ui,sans-serif;z-index:100000}
-.jdux-lightbox-close:hover{background:rgba(255,255,255,.18)}
-
-</style>
-<script>
-(function(){
-  if(window.__jduxLightbox) return; window.__jduxLightbox = true;
-  function init(){
-    var overlay = document.createElement('div');
-    overlay.className = 'jdux-lightbox-overlay';
-    overlay.innerHTML = '<div class="jdux-lightbox-close" aria-label="Close">&times;</div><div class="jdux-lightbox-content"></div>';
-    document.body.appendChild(overlay);
-    var content = overlay.querySelector('.jdux-lightbox-content');
-    var closeBtn = overlay.querySelector('.jdux-lightbox-close');
-
-    function openLightbox(el){
-      content.innerHTML = '';
-      if(el.tagName === 'IMG'){
-        var img = document.createElement('img');
-        img.src = el.currentSrc || el.src;
-        img.alt = el.alt || '';
-        content.appendChild(img);
-      } else if(el.tagName === 'VIDEO'){
-        var video = document.createElement('video');
-        video.controls = true;
-        video.autoplay = true;
-        video.playsInline = true;
-        var srcEl = el.querySelector('source');
-        var srcUrl = srcEl ? srcEl.src : el.currentSrc;
-        video.innerHTML = '<source src="' + srcUrl + '" type="video/mp4">';
-        content.appendChild(video);
-      }
-      overlay.classList.add('jdux-lb-open');
-      requestAnimationFrame(function(){ overlay.classList.add('jdux-lb-show'); });
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(){
-      overlay.classList.remove('jdux-lb-show');
-      document.body.style.overflow = '';
-      var v = content.querySelector('video');
-      if(v) v.pause();
-      setTimeout(function(){
-        overlay.classList.remove('jdux-lb-open');
-        content.innerHTML = '';
-      }, 250);
-    }
-
-    document.addEventListener('click', function(e){
-      var el = e.target.closest('[data-lightbox]');
-      if(el){
-        if(window.matchMedia('(max-width:820px)').matches) return;
-        openLightbox(el);
-        return;
-      }
-      if(e.target === overlay || e.target === closeBtn){ closeLightbox(); }
-    });
-
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape' && overlay.classList.contains('jdux-lb-open')) closeLightbox();
-    });
-  }
-  if(document.body) init();
-  else document.addEventListener('DOMContentLoaded', init);
-})();
-</script>
-
 </body>
 </html>
