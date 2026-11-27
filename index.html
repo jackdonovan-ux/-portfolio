@@ -208,6 +208,9 @@ html,body{overflow-x:clip}
 @media (max-width: 900px){details.mnav{display:block}header nav{gap:10px !important}}
 @media (max-width: 600px){header .hloc,header .hcrumb{display:none !important}.nbook{padding:0 13px !important;font-size:13px !important;min-height:38px}}
 .nofx,.nofx *{transition-duration:0s !important;transition-delay:0s !important}
+/* Writing (27 Nov 15:50): ruled grid like the hero, What I do and the logo wall; image runs edge to edge, the cell lifts on hover. */
+.wgrid .wcard{transition:background-color .35s ease}.wgrid .wcard:hover,.wgrid .wcard:focus-visible{background:rgba(255,255,255,.45)}
+[data-theme="dark"] .wgrid .wcard:hover,[data-theme="dark"] .wgrid .wcard:focus-visible{background:rgba(255,255,255,.04)}
 /* Header over ink bands takes the band's colours (27 Nov 15:23). */
 [data-theme="light"] header.over-ink{--bg:#141413;--fg:#f2efe9;--muted:#a3a097;--line2:rgba(255,255,255,.1);--line3:rgba(255,255,255,.3);--logo:none;color:#f2efe9}
 [data-theme="dark"] header.over-ink{--bg:#eceae4;--fg:#191815;--muted:#66645c;--line2:rgba(0,0,0,.12);--line3:rgba(0,0,0,.24);--logo:invert(1);color:#191815}
@@ -475,14 +478,14 @@ header{transition:background-color .3s ease,border-color .3s ease}
 <section id="writing" data-tone="trust" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 136px clamp(24px, 6vw, 96px) 144px">
 <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>Writing</span></div>
 <h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em"><span>Some</span> <span>thoughts</span> <span>on</span> <span>technology,</span> <span>attention</span> <span>and</span> <span>the</span> <span>planet</span></h2>
-<div class="bi" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div class="bi wgrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line3); border-left: 1px solid var(--line3)">
 <sc-for list="{{ writing }}" as="w" hint-placeholder-count="4">
-<a class="wcard" href="{{ w.href }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; background: var(--wcard); border-radius: 12px; overflow: hidden; text-decoration: none; color: var(--fg)">
+<a class="wcard" href="{{ w.href }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; overflow: hidden; text-decoration: none; color: var(--fg); border-right: 1px solid var(--line3); border-bottom: 1px solid var(--line3)">
 <img class="{{ w.thumbCls }}" src="{{ w.img }}" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover">
-<span style="display: flex; flex-direction: column; gap: 12px; padding: 22px 22px 24px; flex: 1">
+<span style="display: flex; flex-direction: column; gap: 12px; padding: 24px 28px 26px; flex: 1; border-top: 1px solid var(--line3)">
 <span style="font: 500 10px/1 'Geist', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted)">{{ w.pub }}</span>
 <span style="font-family: var(--hf); font-weight: 400; font-size: 19px; line-height: 1.3; flex: 1">{{ w.title }}</span>
-<span style="font-size: 14px; font-weight: 600">Read article ↗</span>
+<span style="font-size: 14px; font-weight: 500; color: var(--accent-ink)">Read article ↗</span>
 </span>
 </a>
 </sc-for>
