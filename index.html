@@ -52,7 +52,7 @@ a{color:var(--fg)}a:hover{opacity:.8}
 .bw span{color:var(--muted);transition:color .8s ease}
 .bw.in span{color:var(--fg)}.bw.in span.t2{color:var(--body)}
 .bw.in span:nth-child(1){transition-delay:0ms}.bw.in span:nth-child(2){transition-delay:58ms}.bw.in span:nth-child(3){transition-delay:117ms}.bw.in span:nth-child(4){transition-delay:176ms}.bw.in span:nth-child(5){transition-delay:234ms}.bw.in span:nth-child(6){transition-delay:292ms}.bw.in span:nth-child(7){transition-delay:351ms}.bw.in span:nth-child(8){transition-delay:410ms}.bw.in span:nth-child(9){transition-delay:468ms}.bw.in span:nth-child(10){transition-delay:526ms}.bw.in span:nth-child(11){transition-delay:585ms}.bw.in span:nth-child(12){transition-delay:644ms}.bw.in span:nth-child(13){transition-delay:702ms}.bw.in span:nth-child(14){transition-delay:760ms}.bw.in span:nth-child(15){transition-delay:819ms}.bw.in span:nth-child(16){transition-delay:878ms}.bw.in span:nth-child(17){transition-delay:936ms}.bw.in span:nth-child(18){transition-delay:994ms}
-.bpg{position:fixed;inset:0;pointer-events:none;z-index:45;opacity:var(--bpo);transition:opacity .45s ease;background-image:radial-gradient(circle,rgba(128,126,120,.42) 1px,transparent 1.5px),linear-gradient(to right,rgba(128,126,120,.09) 1px,transparent 1px),linear-gradient(to bottom,rgba(128,126,120,.09) 1px,transparent 1px);background-size:16px 16px,64px 64px,64px 64px;background-position:8px 8px,0 0,0 0;-webkit-mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%);mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%)}
+.bpg{position:fixed;inset:0;pointer-events:none;z-index:45;opacity:var(--bpo);transition:opacity .45s ease;background-image:radial-gradient(circle,rgba(var(--gp,91,79,208),.7) 1.1px,transparent 1.6px),linear-gradient(to right,rgba(var(--gp,91,79,208),.16) 1px,transparent 1px),linear-gradient(to bottom,rgba(var(--gp,91,79,208),.16) 1px,transparent 1px);background-size:16px 16px,64px 64px,64px 64px;background-position:8px 8px,0 0,0 0;-webkit-mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%);mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%)}
 @media (hover:none),(prefers-reduced-motion:reduce){.bpg{display:none}}
 /* Cards sit above the scaffolding layer, so the dots can never run over them. */
 .card,.wcards > *,.wcard,.mt,.hero-about{position:relative;z-index:46}
@@ -196,7 +196,7 @@ html,body{overflow-x:clip}
 </style>
 </helmet>
 <div class="{{ rootClass }}" ref="{{ setRoot }}" data-theme="{{ theme }}" data-tone="{{ tone }}" onMouseMove="{{ bpMove }}" onMouseLeave="{{ bpOut }}" style="--sd: 0; --mx: -500px; --my: -500px; --bpo: 0; --cx: -100px; --cy: -100px; --ring: 0; --con: 0; background: var(--pagebg); color: var(--fg); font-family: 'Geist', system-ui, sans-serif; min-height: 100vh; transition: background-color .9s ease, color .4s ease">
-<div class="bpg" aria-hidden="true"></div>
+<div class="bpg" aria-hidden="true" style="{{ bpgStyle }}"></div>
 <sc-if value="{{ showLoader }}" hint-placeholder-val="{{ false }}">
 <div class="ldr" aria-hidden="true" style="{{ loaderStyle }}">
 <p ref="{{ setLdrP }}" style="{{ loaderTextStyle }}"><span style="{{ ldrTxtStyle }}">{{ loaderText }}</span><span class="{{ caretClass }}" style="{{ ldrTxtStyle }}"></span></p>
@@ -236,9 +236,9 @@ html,body{overflow-x:clip}
 <div class="mh-l" style="grid-area: t; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px clamp(24px, 4vw, 64px) clamp(36px, 6vh, 64px) clamp(24px, 5vw, 80px)">
 <div style="display: flex; flex-direction: column; gap: 20px">
 <div id="hero-name" style="{{ in1 }}"><div style="display: flex; align-items: center; gap: 12px; font-size: 15px; line-height: 1.3; color: var(--body)"><span><strong style="font-weight: 500; color: var(--fg)">Jack Donovan</strong></span></div></div>
-<h1 ref="{{ setH1 }}" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; white-space: normal; {{ inT }}">Product &amp; Service Design Lead</h1>
+<h1 ref="{{ setH1 }}" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; white-space: normal; {{ inT }}">Product &amp; Service<br>Design Lead</h1>
 <div style="display: flex; flex-direction: column; gap: 22px">
-<p style="margin: 0; max-width: 500px; font-size: 16px; line-height: 1.6; color: var(--body); {{ in2 }}">From first idea to launch, I frame the problem, set the direction and build the experience, setting the foundations that help it scale. In sectors that shape everyday life.</p>
+<p style="margin: 0; max-width: 500px; font-size: 16px; line-height: 1.6; color: var(--body); {{ in2 }}">From first idea to launch, I frame the problem, set the direction and build the experience, setting the foundations that help it scale. In&nbsp;sectors&nbsp;that&nbsp;shape&nbsp;everyday&nbsp;life.</p>
 <div style="display: flex; flex-direction: column; gap: 12px; {{ in3 }}">
 <p style="margin: 0; font-size: 15px; line-height: 1.4; font-weight: 500; color: var(--fg)">Need some fresh eyes on a problem?</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
@@ -250,14 +250,16 @@ html,body{overflow-x:clip}
 </div>
 </div>
 </div>
-<div class="hero-about" style="{{ aboutTile }}">
+<div class="hero-about" style="{{ aboutTile }}" onMouseEnter="{{ aboutPick }}" onFocus="{{ aboutPick }}">
 <div style="{{ aboutInner }}">
-<img src="assets/portrait-jack.jpg" alt="Jack Donovan" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; filter: grayscale(1) contrast(1.08) brightness(.9)">
-<span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 22%, rgba(0,0,0,.45) 52%, rgba(0,0,0,.82) 100%)"></span>
-<a href="about.html" class="about-link" style="position: absolute; left: 14px; right: 14px; bottom: 13px; display: flex; flex-direction: column; gap: 6px; color: #fff; text-decoration: none; text-shadow: 0 1px 2px rgba(0,0,0,.4)">
+<img src="assets/portrait-jack.jpg" alt="Jack Donovan" style="{{ aboutImg }}">
+<span aria-hidden="true" style="{{ aboutScrim }}"></span>
+<a href="about.html" class="about-link" aria-label="About me" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 14px 13px; color: #fff; text-decoration: none; text-shadow: 0 1px 2px rgba(0,0,0,.4)">
+<span style="{{ aboutCap }}">
 <span style="font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase">About me</span>
-<span style="font-size: 14px; font-weight: 400; line-height: 1.35">Over 15 years’ experience in tech, working across EMEA and APAC.</span>
+<span style="font-size: 14px; font-weight: 400; line-height: 1.35">15+ years’ experience across EMEA and APAC.</span>
 <span style="font-size: 13px; font-weight: 500">More about me →</span>
+</span>
 </a>
 </div>
 </div>
@@ -528,11 +530,12 @@ class Component extends DCLogic {
         if (!tiles.length || !('IntersectionObserver' in window)) { this._mfT = setTimeout(watch, 300); return; }
         const inBand = {};
         this._mio = new IntersectionObserver((es) => {
-          es.forEach((e) => { const i = Array.prototype.indexOf.call(tiles, e.target); if (i > -1) inBand[i] = e.isIntersecting; });
+          es.forEach((e) => { if (e.target === this._abEl) { inBand.about = e.isIntersecting; return; } const i = Array.prototype.indexOf.call(tiles, e.target); if (i > -1) inBand[i] = e.isIntersecting; });
           const mf = {}; Object.keys(inBand).forEach((k) => { if (inBand[k]) mf[k] = true; });
           this.setState({ mf });
         }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
         tiles.forEach((t) => this._mio.observe(t));
+        const ab = document.querySelector('.hero-about'); if (ab) { this._abEl = ab; this._mio.observe(ab); }
       };
       watch();
     }
@@ -617,7 +620,7 @@ class Component extends DCLogic {
     if (!reduce) this._wrot = setInterval(() => this.setState({ wf: ((this.state.wf || 0) + 1) % 4 }), 4000);
     if (!reduce) this._rot = setInterval(() => {
       if (this.state.hold || this.state.stage < 9 || this._touch) return;
-      this.setState({ film: (this.state.film + 1) % 6 });
+      this.setState({ film: (this.state.film + 1) % 7 });
     }, 5000);
   }
   countUp() {
@@ -786,6 +789,14 @@ class Component extends DCLogic {
     const cool = [150, 178, 226], cw = Math.max(0, -summer) * 0.22;
     const day = ka[1].map((v, j) => { const c = v + (kb[1][j] - v) * fr; return Math.round(c + (cool[j] - c) * cw); }).join(', ');
     const dark = this.state.theme === 'dark';
+    // AI grid (JD, 27 Nov 13:19): route A, the pointer reveal is iris purple, and its shade drifts with the visitor's day,
+    // using the same sunrise and sunset as the daylight wash: indigo at night, lavender at sunrise, iris at midday,
+    // warmer violet at golden hour and dusk. Dark mode uses lifted shades. Canvas: Purple-grid-daylight.
+    const GP = [[0, [74, 78, 200], [140, 148, 246]], [sr - 1.5, [88, 74, 198], [154, 140, 244]], [sr, [138, 96, 200], [196, 166, 246]], [sr + 1.75, [104, 84, 206], [164, 150, 244]], [noon, [91, 79, 208], [150, 140, 240]], [ss - 1.5, [100, 76, 206], [160, 138, 240]], [ss, [124, 72, 200], [184, 142, 242]], [ss + 1.25, [106, 62, 184], [168, 130, 236]], [ss + 3.5, [84, 70, 196], [146, 140, 244]], [24, [74, 78, 200], [140, 148, 246]]];
+    let ga = GP[0], gb = GP[1];
+    for (let k = 0; k < GP.length - 1; k++) { if (hour >= GP[k][0] && hour <= GP[k + 1][0]) { ga = GP[k]; gb = GP[k + 1]; break; } }
+    const gf = gb[0] > ga[0] ? (hour - ga[0]) / (gb[0] - ga[0]) : 0, gi = dark ? 2 : 1;
+    const gridRgb = ga[gi].map((v, j) => Math.round(v + (gb[gi][j] - v) * gf)).join(', ');
     const MA = ['b', 'a', 'c', 'd'];
     const CS = { 'Practi': 'practi.html', 'Kaluza': 'kaluza.html', 'Ford Mach-E': 'ford.html', 'Wadi Safar': 'wadi.html', 'Ford UK': 'ford.html' };
     const M = F.map((d, i) => ({ href: CS[d.name], img: d.img, logo: d.logo, logoAlt: d.logoAlt, lh: d.lh, sector: d.sector, client: d.name, line: d.line, bg: d.bg, aria: d.name + ' case study', soon: false, area: MA[i] }))
@@ -794,6 +805,7 @@ class Component extends DCLogic {
         { img: '', logo: '', text: true, portal: true, kicker: 'AI Playground', title: 'Coming soon', noTag: true, bg: '#141413', aria: 'AI Playground, coming soon', soon: true, area: 'p' }
       ]);
     const order = { a: 1, b: 2, c: 3, d: 4, e: 5, p: 6 };
+    const aboutLit = this._touch ? !!(this.state.mf || {}).about : fa === 6;
     const mosaic = M.map((m, i) => {
       const lit = this._touch ? !!(this.state.mf || {})[i] : fa === i;
       const on = !!m.img && lit;
@@ -811,6 +823,12 @@ class Component extends DCLogic {
       // The About card is the missing piece: a dashed gap while the tiles arrive, then it slots in last.
       aboutTile: 'grid-area: u; position: relative; min-width: 0; min-height: 0; overflow: hidden; background: ' + (st >= 10 ? 'var(--stone)' : 'transparent') + '; outline: ' + (st >= 9 && st < 10 ? '1px dashed var(--line3)' : '0') + '; outline-offset: -1px; transition: background-color .5s ease, opacity .5s ease, transform .6s cubic-bezier(.2,.7,.2,1); opacity: ' + (st >= 9 ? '1' : '0') + '; transform: ' + (st >= 10 || st < 9 ? 'none' : 'scale(.96)'),
       aboutInner: 'position: absolute; inset: 0; transition: opacity .5s ease .15s; opacity: ' + (st >= 10 ? '1' : '0'),
+      // About now behaves like the other tiles (JD, 27 Nov 13:19): mono until it's lit, then colour plus caption. Index 6 in the rotation.
+      aboutImg: 'position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; transition: filter 1s ease, transform 2.4s cubic-bezier(.2,.7,.2,1); filter: ' + (aboutLit ? 'none' : 'grayscale(1) contrast(1.08) brightness(.9)') + '; transform: scale(' + (aboutLit ? '1.03' : '1') + ')',
+      aboutScrim: 'position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.5) 62%, rgba(0,0,0,.82) 100%); transition: opacity .4s ease; opacity: ' + (aboutLit ? '1' : '0'),
+      aboutCap: 'display: flex; flex-direction: column; gap: 6px; overflow: hidden; transition: opacity .35s ease, max-height .4s ease; max-height: ' + (aboutLit ? '9em' : '0') + '; opacity: ' + (aboutLit ? '1' : '0'),
+      aboutPick: () => { if (!this._touch) this.setState({ film: 6 }); },
+      bpgStyle: '--gp: ' + gridRgb,
       mosaic,
       setStats: (el) => { this._stats = el; },
       // Selected work: a small preview of the case study follows the pointer over the index (pointer devices only).
