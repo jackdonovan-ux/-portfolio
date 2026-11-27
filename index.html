@@ -4,6 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script>
+/* Header over ink bands (JD, 27 Nov 15:23): the translucent header turns muddy over dark bands, so it takes the band's colours there. */
+(function(){
+  var t=null;
+  function check(){
+    t=null; var h=document.querySelector('header'); if(!h) return;
+    var y=h.getBoundingClientRect().height/2, over=false;
+    document.querySelectorAll('.band-ink').forEach(function(b){var r=b.getBoundingClientRect(); if(r.top<=y&&r.bottom>=y) over=true;});
+    h.classList.toggle('over-ink',over);
+  }
+  function q(){ if(!t) t=requestAnimationFrame(check); }
+  addEventListener('scroll',q,{passive:true}); addEventListener('resize',q); addEventListener('load',check);
+  document.addEventListener('DOMContentLoaded',function(){ setTimeout(check,300); });
+})();
+</script>
 <title>Jack Donovan — Product &amp; Service Design Lead</title>
 <meta name="description" content="From first idea to launch, I frame the problem, set the direction and build the experience, setting the foundations that help it scale. In sectors that shape everyday life.">
 <link rel="canonical" href="https://jackdonovan.co/">
@@ -193,6 +208,10 @@ html,body{overflow-x:clip}
 @media (max-width: 900px){details.mnav{display:block}header nav{gap:10px !important}}
 @media (max-width: 600px){header .hloc,header .hcrumb{display:none !important}.nbook{padding:0 13px !important;font-size:13px !important;min-height:38px}}
 .nofx,.nofx *{transition-duration:0s !important;transition-delay:0s !important}
+/* Header over ink bands takes the band's colours (27 Nov 15:23). */
+[data-theme="light"] header.over-ink{--bg:#141413;--fg:#f2efe9;--muted:#a3a097;--line2:rgba(255,255,255,.1);--line3:rgba(255,255,255,.3);--logo:none;color:#f2efe9}
+[data-theme="dark"] header.over-ink{--bg:#eceae4;--fg:#191815;--muted:#66645c;--line2:rgba(0,0,0,.12);--line3:rgba(0,0,0,.24);--logo:invert(1);color:#191815}
+header{transition:background-color .3s ease,border-color .3s ease}
 /* Scroll build (JD, 27 Nov 13:42): on first visit each module's own grey lines are ruled in first, then the content arrives.
    Results bar: the top rule draws across, the three dividers draw down, then the figures fade up and tick. */
 .stats{position:relative}
@@ -251,7 +270,7 @@ html,body{overflow-x:clip}
 
 <!-- HERO (assembles on first load: filmstrip panels slot in, then the copy, then the H1 types) -->
 <div style="{{ washStyle }}">
-<section id="top" data-tone="hero" class="mh" onMouseEnter="{{ stripIn }}" onMouseLeave="{{ stripOut }}" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; display: grid; --u: calc((min(100vw, 1440px) - 14px) / 8); grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(4, var(--u)); grid-template-areas: '. . . . a a b b' '. . . . a a b b' 't t t t c c u e' 't t t t d d p p'; gap: 2px">
+<section id="top" data-tone="hero" class="mh" onMouseEnter="{{ stripIn }}" onMouseLeave="{{ stripOut }}" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; display: grid; --u: calc((min(100vw, 1440px) - 14px) / 8); grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(4, clamp(var(--u), calc((100svh - 76px) / 4), calc(var(--u) * 1.4))); grid-template-areas: '. . . . a a b b' '. . . . a a b b' 't t t t c c u e' 't t t t d d p p'; gap: 2px">
 <div class="mh-l" style="grid-area: t; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px clamp(24px, 4vw, 64px) clamp(36px, 6vh, 64px) clamp(24px, 5vw, 80px)">
 <div style="display: flex; flex-direction: column; gap: 20px">
 <div id="hero-name" style="{{ in1 }}"><div style="display: flex; align-items: center; gap: 12px; font-size: 15px; line-height: 1.3; color: var(--body)"><span><strong style="font-weight: 500; color: var(--fg)">Jack Donovan</strong></span></div></div>
@@ -302,7 +321,7 @@ html,body{overflow-x:clip}
 <div class="intro" style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px 96px; align-items: end">
 <div>
 <div style="margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)">Who I am</div>
-<h2 class="bw" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em; max-width: 16em"><span>It’s</span> <span>all</span> <span>about</span> <span>people,</span><br><span>and</span> <span>outcomes.</span></h2>
+<h2 class="bw" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em; max-width: 16em"><span>It’s</span> <span>all</span> <span>about</span> <span>people,</span><br><span>and</span> <span>outcomes.</span></h2>
 </div>
 <div class="rv" style="display: flex; flex-direction: column; gap: 22px">
 <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--body)">I love unpacking complexity. Getting to know the team involved, nailing what customers need and holding that up against what the business is trying to achieve. Where the two meet dictates the outcome I go after. Then I build whatever’s missing to get there: a way of working, a quality bar, a team or a new feature to test.</p>
@@ -327,10 +346,10 @@ html,body{overflow-x:clip}
 <main id="work" class="band-stone">
 <section aria-label="What I do" data-tone="do" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 136px clamp(24px, 6vw, 96px) 120px">
 <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>What I do</span></div>
-<h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>Teams</span> <span>bring</span> <span>me</span> <span>in</span> <span>to:</span></h2>
-<div class="wcards bi" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em"><span>Teams</span> <span>bring</span> <span>me</span> <span>in</span> <span>to:</span></h2>
+<div class="wcards bi" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line3); border-left: 1px solid var(--line3)">
 <sc-for list="{{ traits }}" as="t" hint-placeholder-count="5">
-<article style="display: flex; flex-direction: column; gap: 14px; padding: 28px 28px 24px; border-radius: 16px; background: var(--panel)">
+<article style="display: flex; flex-direction: column; gap: 14px; padding: 32px 32px 28px; border-right: 1px solid var(--line3); border-bottom: 1px solid var(--line3)">
 <span style="font-size: 13px; font-weight: 500; color: var(--accent-ink)">{{ t.num }}</span>
 <h3 style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.35rem, 1.8vw, 1.6rem); line-height: 1.2; letter-spacing: -.02em">{{ t.title }}</h3>
 <p style="margin: 0 0 22px; flex: 1; font-size: 15px; line-height: 1.6; color: var(--body)">{{ t.body }}</p>
@@ -343,7 +362,7 @@ html,body{overflow-x:clip}
 </a>
 </article>
 </sc-for>
-<a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" style="display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 28px 28px 24px; border-radius: 16px; background: var(--accent); text-decoration: none; color: #fff">
+<a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" style="display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 32px 32px 28px; border-right: 1px solid var(--line3); border-bottom: 1px solid var(--line3); background: var(--accent); text-decoration: none; color: #fff">
 <span style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75)">Not sure which?</span>
 <span style="font-family: var(--hf); font-weight: 300; font-size: clamp(1.35rem, 1.8vw, 1.6rem); line-height: 1.25; letter-spacing: -.02em">Most problems involve a mix. Get a fresh set of eyes on yours.</span>
 <span style="font-size: 14px; font-weight: 500; color: #fff">Book an intro call →</span>
@@ -354,7 +373,7 @@ html,body{overflow-x:clip}
 <!-- SELECTED WORK: a text-led index, an easy way in for scrollers -->
 <section id="selected-work" aria-label="Selected work" data-tone="do" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(24px, 6vw, 96px) 136px">
 <div style="margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)">Projects</div>
-<h2 class="bw" style="margin: 0 0 40px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>Selected</span> <span>work</span></h2>
+<h2 class="bw" style="margin: 0 0 40px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em"><span>Selected</span> <span>work</span></h2>
 <ol class="wrow" onMouseMove="{{ prevMove }}" onMouseLeave="{{ prevOut }}" style="list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line3)">
 <sc-for list="{{ index }}" as="r" hint-placeholder-count="5">
 <li>
@@ -373,31 +392,11 @@ html,body{overflow-x:clip}
 </section>
 </main>
 
-<!-- WRITING -->
-<div class="band-stone">
-<section id="writing" data-tone="trust" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 136px clamp(24px, 6vw, 96px) 144px">
-<div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>Writing</span></div>
-<h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>Some</span> <span>thoughts</span> <span>on</span> <span>technology,</span> <span>attention</span> <span>and</span> <span>the</span> <span>planet</span></h2>
-<div class="bi" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
-<sc-for list="{{ writing }}" as="w" hint-placeholder-count="4">
-<a class="wcard" href="{{ w.href }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; background: var(--wcard); border-radius: 12px; overflow: hidden; text-decoration: none; color: var(--fg)">
-<img class="{{ w.thumbCls }}" src="{{ w.img }}" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover">
-<span style="display: flex; flex-direction: column; gap: 12px; padding: 22px 22px 24px; flex: 1">
-<span style="font: 500 10px/1 'Geist', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted)">{{ w.pub }}</span>
-<span style="font-family: var(--hf); font-weight: 400; font-size: 19px; line-height: 1.3; flex: 1">{{ w.title }}</span>
-<span style="font-size: 14px; font-weight: 600">Read article ↗</span>
-</span>
-</a>
-</sc-for>
-</div>
-</section>
-
-</div>
 <!-- CLIENTS: logo wall (missing logo files shown as placeholders) -->
 <section aria-label="Trusted by" data-tone="trust" class="band-ink">
 <div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 72px clamp(24px, 6vw, 96px) 88px">
 <div style="font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; color: var(--muted)">Trusted by</div>
-<h2 class="bw" style="margin: 0 0 48px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>Organisations</span> <span>across</span> <span>EMEA</span> <span>and</span> <span>APAC</span></h2>
+<h2 class="bw" style="margin: 0 0 48px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em"><span>Organisations</span> <span>across</span> <span>EMEA</span> <span>and</span> <span>APAC</span></h2>
 <div class="sfade bi-logos" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--line2); border-left: 1px solid var(--line2)">
 <sc-for list="{{ clients }}" as="c" hint-placeholder-count="12">
 <div style="height: 104px; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--line2); border-bottom: 1px solid var(--line2); padding: 0 16px">
@@ -413,7 +412,7 @@ html,body{overflow-x:clip}
 <!-- TESTIMONIALS: left-aligned page break, auto-advances every 7s, pauses on hover -->
 <section aria-label="Testimonials" data-tone="quote" aria-roledescription="carousel" onMouseEnter="{{ qHoldOn }}" onMouseLeave="{{ qHoldOff }}" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 144px clamp(24px, 6vw, 96px)">
 <div style="font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; color: var(--muted)">Testimonials</div>
-<h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.015em"><span>From</span> <span>clients</span> <span>and</span> <span>colleagues</span></h2>
+<h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em"><span>From</span> <span>clients</span> <span>and</span> <span>colleagues</span></h2>
 <div class="rv qgrid" style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 0 20px; max-width: 1120px">
 <span aria-hidden="true" style="font-family: var(--hf); font-size: 64px; line-height: .8; color: var(--accent-ink)">“</span>
 <div style="display: flex; flex-direction: column; gap: 36px">
@@ -448,12 +447,12 @@ html,body{overflow-x:clip}
 <div style="display: flex; flex-wrap: wrap; gap: 48px 72px; align-items: flex-start">
 <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; gap: 20px">
-<h2 class="bw" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.01em"><span>Senior</span> <span>enough</span> <span>to</span> <span>steer</span> <span>it.</span><br><span class="t2">Hands-on</span> <span class="t2">enough</span> <span class="t2">to</span> <span class="t2">build</span> <span class="t2">it.</span></h2>
+<h2 class="bw" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.01em"><span>Senior</span> <span>enough</span> <span>to</span> <span>steer</span> <span>it.</span><br><span class="t2">Hands-on</span> <span class="t2">enough</span> <span class="t2">to</span> <span class="t2">build</span> <span class="t2">it.</span></h2>
 <p style="margin: 0; max-width: 78ch; font-size: 16px; line-height: 1.6; color: var(--body); text-wrap: balance">I’m curious, collaborative and direct. I’ll ask the tough questions early, get stuck in with your team, and stay close to the work until it’s real.</p>
 </div>
-<div class="bi" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+<div class="bi" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid var(--line3); border-left: 1px solid var(--line3)">
 <sc-for list="{{ ways }}" as="w" hint-placeholder-count="3">
-<div class="card" style="background: var(--panel); border-radius: 12px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-sizing: border-box">
+<div class="card" style="border-right: 1px solid var(--line3); border-bottom: 1px solid var(--line3); padding: 32px 28px 28px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-sizing: border-box">
 <div style="font: 500 10px/1.5 'Geist', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted)">{{ w.length }}</div>
 <h3 style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: 22px; line-height: 1.2">{{ w.title }}</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--body); flex: 1">{{ w.body }}</p>
@@ -461,18 +460,43 @@ html,body{overflow-x:clip}
 </div>
 </sc-for>
 </div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+<span style="font-size: 15px; color: var(--body)">Not sure which fits?</span>
+<a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 20px; font-size: 14px; font-weight: 500">Book an intro call →</a>
+</div>
 
 </div>
 </div>
 </div>
 </section>
 
+<!-- WRITING -->
+<div class="band-stone">
+<section id="writing" data-tone="trust" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 136px clamp(24px, 6vw, 96px) 144px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>Writing</span></div>
+<h2 class="bw" style="margin: 0 0 56px; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.015em"><span>Some</span> <span>thoughts</span> <span>on</span> <span>technology,</span> <span>attention</span> <span>and</span> <span>the</span> <span>planet</span></h2>
+<div class="bi" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<sc-for list="{{ writing }}" as="w" hint-placeholder-count="4">
+<a class="wcard" href="{{ w.href }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; background: var(--wcard); border-radius: 12px; overflow: hidden; text-decoration: none; color: var(--fg)">
+<img class="{{ w.thumbCls }}" src="{{ w.img }}" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover">
+<span style="display: flex; flex-direction: column; gap: 12px; padding: 22px 22px 24px; flex: 1">
+<span style="font: 500 10px/1 'Geist', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted)">{{ w.pub }}</span>
+<span style="font-family: var(--hf); font-weight: 400; font-size: 19px; line-height: 1.3; flex: 1">{{ w.title }}</span>
+<span style="font-size: 14px; font-weight: 600">Read article ↗</span>
+</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+</div>
+
 <!-- HOW I WORK: tools in a loop -->
 <section aria-label="How I work" data-tone="how" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 144px clamp(24px, 6vw, 96px) 40px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 48px 72px">
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 20px">
 <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: -2px; font: 500 11px/1 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted)"><span>How I work</span></div>
-<h2 class="bw" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -.01em"><span>I</span> <span>start</span> <span>with</span> <span>the</span> <span>outcome.</span><br><span class="t2">The</span> <span class="t2">process</span> <span class="t2">and</span> <span class="t2">tools</span> <span class="t2">follow.</span></h2>
+<h2 class="bw" style="margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(1.5rem, 2vw, 1.75rem); line-height: 1.1; letter-spacing: -.01em"><span>I</span> <span>start</span> <span>with</span> <span>the</span> <span>outcome.</span><br><span class="t2">The</span> <span class="t2">process</span> <span class="t2">and</span> <span class="t2">tools</span> <span class="t2">follow.</span></h2>
 <p style="margin: 0; max-width: 44ch; font-size: 16px; line-height: 1.6; color: var(--body)">The tools change. How I use them doesn’t. AI does the legwork (research, synthesis, prototypes), so we get to tested answers sooner. The judgement, collaboration and craft stay distinctly human.</p>
 </div>
 <div class="hiw" style="flex: 0 0 540px; position: relative; width: 540px; height: 540px; color: var(--line3)">
@@ -704,27 +728,27 @@ class Component extends DCLogic {
     // JD, 27 Nov 11:55: the plate borrows ANNA's marker (anna.money hero): a pale accent tint with a solid accent bar on the left.
     // JD, 27 Nov 13:07: "What should we build first?" types at 75ms a character (27 characters), so it finishes about when the old line did
     // (the old one-liner typed at 85ms, JD 25 Nov 10:20); it holds ~2s, so everything after it runs 300ms later.
-    T(350, () => { this._ty = setInterval(() => {
+    T(250, () => { this._ty = setInterval(() => {
       const n = this.state.typed;
       if (n >= LOADER_LINE.length) { clearInterval(this._ty); this.setState({ caret: 'flash' }); return; }
-      this.setState({ typed: n + 1 }); }, 75); });
+      this.setState({ typed: n + 1 }); }, 55); });
     // JD, 26 Nov 09:48: the slogan clears, then its plate grows to fill the screen over the scaffolding,
     // and only then does the page build (copy stack, then the mosaic).
-    T(4800, () => this.setState({ ltxt: true }));
-    T(5150, () => {
+    T(2700, () => this.setState({ ltxt: true })); // 27 Nov 15:23: was 4800 (hold ~1s, was ~2.4s)
+    T(2950, () => {
       const el = this._ldrP; const W = window.innerWidth || 0, H = window.innerHeight || 0;
       if (!el) { this.setState({ lfill: 'full' }); return; }
       const b = el.getBoundingClientRect();
       this.setState({ lfill: { t: Math.max(0, b.top), r: Math.max(0, W - b.right), b: Math.max(0, H - b.bottom), l: Math.max(0, b.left) } });
       this._timers.push(setTimeout(() => this.setState({ lfill: 'full' }), 40));
     });
-    T(6050, () => { this.setState({ loader: false, stage: 5, caret: 'done' }); try { sessionStorage.setItem('jdux-intro', '1'); } catch (e) {} });
+    T(3450, () => { this.setState({ loader: false, stage: 5, caret: 'done' }); try { sessionStorage.setItem('jdux-intro', '1'); } catch (e) {} });
     // Then the copy stack in sequence (JD, 25 Nov 10:23): name, title, subtitle, CTA and links, then the mosaic.
-    T(6350, () => this.setState({ stage: 6 }));   // title (appears, no typing)
-    T(6700, () => this.setState({ stage: 7 }));   // subtitle
-    T(7050, () => this.setState({ stage: 8 }));   // CTA and links
-    T(7450, () => this.setState({ stage: 9 }));   // case study tiles, one by one
-    T(8900, () => this.setState({ stage: 10 }));  // About, the final piece
+    T(3600, () => this.setState({ stage: 6 }));   // title (appears, no typing)
+    T(3750, () => this.setState({ stage: 7 }));   // subtitle
+    T(3900, () => this.setState({ stage: 8 }));   // CTA and links
+    T(4050, () => this.setState({ stage: 9 }));   // case study tiles, one by one
+    T(5000, () => this.setState({ stage: 10 }));  // About, the final piece
   }
   componentWillUnmount() { clearTimeout(this._bpT); window.removeEventListener('scroll', this._bpScroll); clearInterval(this._ty2); window.removeEventListener('resize', this._onResize); clearInterval(this._cu); clearTimeout(this._cuT); if (this._sio) this._sio.disconnect(); clearInterval(this._clk); clearTimeout(this._qt); clearTimeout(this._qb); (this._timers || []).forEach(clearTimeout); clearInterval(this._ty); document.removeEventListener('scroll', this._onScroll, true); clearInterval(this._rot); clearInterval(this._wrot); window.removeEventListener('scroll', this._depth); if (this._mio) this._mio.disconnect(); clearTimeout(this._mfT); if (this._io) this._io.disconnect(); if (this._tio) this._tio.disconnect(); }
   renderVals() {
@@ -845,8 +869,8 @@ class Component extends DCLogic {
       aboutInner: 'position: absolute; inset: 0; transition: opacity .5s ease .15s; opacity: ' + (st >= 10 ? '1' : '0'),
       // About now behaves like the other tiles (JD, 27 Nov 13:19): mono until it's lit, then colour plus caption. Index 6 in the rotation.
       aboutImg: 'position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; transition: filter 1s ease, transform 2.4s cubic-bezier(.2,.7,.2,1); filter: ' + (aboutLit ? 'none' : 'grayscale(1) contrast(1.08) brightness(.9)') + '; transform: scale(' + (aboutLit ? '1.03' : '1') + ')',
-      aboutScrim: 'position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.5) 62%, rgba(0,0,0,.82) 100%); transition: opacity .4s ease; opacity: ' + (aboutLit ? '1' : '0'),
-      aboutCap: 'display: flex; flex-direction: column; gap: 6px; overflow: hidden; transition: opacity .35s ease, max-height .4s ease; max-height: ' + (aboutLit ? '9em' : '0') + '; opacity: ' + (aboutLit ? '1' : '0'),
+      aboutScrim: 'position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.5) 62%, rgba(0,0,0,.82) 100%); transition: opacity .4s ease; opacity: 1', // caption scrim always on (JD, 27 Nov 15:23)
+      aboutCap: 'display: flex; flex-direction: column; gap: 6px; overflow: hidden; transition: opacity .35s ease, max-height .4s ease; max-height: 9em; opacity: 1', // About label visible at rest (JD, 27 Nov 15:23)
       aboutPick: () => { if (!this._touch) this.setState({ film: 6 }); },
       bpgStyle: '--gp: ' + gridRgb,
       mosaic,
