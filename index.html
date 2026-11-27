@@ -512,7 +512,8 @@ html,body{overflow-x:clip}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5400}}'>
-const LOADER_LINE = 'What’s missing?\nLet’s build it.';
+// JD, 27 Nov 13:07: the loader asks the visitor's real question. One line on wide screens, two on phones.
+const LOADER_LINE = (typeof window !== 'undefined' && window.innerWidth < 600) ? 'What should we\nbuild first?' : 'What should we build first?';
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { film: 1, still: false, tone: 'hero', loader: true, lt: 0, lout: false, theme: 'light', h1in: false, caret: 'typing', typed: 0, stage: 0, open: 0, q: 0, fx: 'mono', docked: false, hold: false, qbar: false, qhold: false }; }
   componentDidMount() {
@@ -674,18 +675,17 @@ class Component extends DCLogic {
       const b = h.getBoundingClientRect();
       this.setState({ lpos: { x: Math.round(b.left) - 16, y: Math.round(b.top - 14) - 10 } }); // minus the H1's pre-reveal 14px offset, and the plate's padding
     }, 30);
-    // Loader: the scaffolding fills the screen, "What's missing? Let's build it." types, a pause, then it clears
+    // Loader: the scaffolding fills the screen, "What should we build first?" types, a pause, then it clears
     // and the page assembles: title and copy, then the tiles, then the About card arrives last.
     const T = (ms, fn) => this._timers.push(setTimeout(fn, ms));
     this._timers = [];
-    // JD, 27 Nov 11:26: the loader asks, then invites: "What's missing? / Let's build it." on two lines.
-    // 66ms a character with a ~330ms beat after the question, so it finishes about when the old line did
+    // JD, 27 Nov 11:55: the plate borrows ANNA's marker (anna.money hero): a pale accent tint with a solid accent bar on the left.
+    // JD, 27 Nov 13:07: "What should we build first?" types at 75ms a character (27 characters), so it finishes about when the old line did
     // (the old one-liner typed at 85ms, JD 25 Nov 10:20); it holds ~2s, so everything after it runs 300ms later.
-    T(350, () => { let beat = 0; this._ty = setInterval(() => {
+    T(350, () => { this._ty = setInterval(() => {
       const n = this.state.typed;
       if (n >= LOADER_LINE.length) { clearInterval(this._ty); this.setState({ caret: 'flash' }); return; }
-      if (n === 15 && beat < 5) { beat++; return; }
-      this.setState({ typed: n + 1 }); }, 66); });
+      this.setState({ typed: n + 1 }); }, 75); });
     // JD, 26 Nov 09:48: the slogan clears, then its plate grows to fill the screen over the scaffolding,
     // and only then does the page build (copy stack, then the mosaic).
     T(4800, () => this.setState({ ltxt: true }));
@@ -885,14 +885,14 @@ class Component extends DCLogic {
       loaderStyle: 'transition: opacity .5s ease; opacity: ' + (this.state.lout ? '0' : '1'),
       setLdrP: (el) => { this._ldrP = el; },
       ldrTxtStyle: 'transition: opacity .3s ease; opacity: ' + (this.state.ltxt ? '0' : '1'),
-      ldrFillStyle: (() => { const f = this.state.lfill; if (!f) return 'display: none'; const c = f === 'full' ? 'inset(0px 0px 0px 0px)' : 'inset(' + f.t + 'px ' + f.r + 'px ' + f.b + 'px ' + f.l + 'px)'; return 'position: absolute; inset: 0; z-index: 2; background: var(--pagebg); pointer-events: none; clip-path: ' + c + '; -webkit-clip-path: ' + c + '; transition: clip-path .8s cubic-bezier(.65,0,.35,1), -webkit-clip-path .8s cubic-bezier(.65,0,.35,1)'; })(),
+      ldrFillStyle: (() => { const f = this.state.lfill; if (!f) return 'display: none'; const c = f === 'full' ? 'inset(0px 0px 0px 0px)' : 'inset(' + f.t + 'px ' + f.r + 'px ' + f.b + 'px ' + f.l + 'px)'; return 'position: absolute; inset: 0; z-index: 2; background: var(--pagebg); ' + (f === 'full' ? '' : 'background: color-mix(in srgb, var(--accent-ink) 10%, var(--pagebg)); ') + 'pointer-events: none; clip-path: ' + c + '; -webkit-clip-path: ' + c + '; transition: clip-path .8s cubic-bezier(.65,0,.35,1), -webkit-clip-path .8s cubic-bezier(.65,0,.35,1), background-color .8s ease'; })(),
       setH1: (el) => { this._h1 = el; },
       h1Typed: 'Product & Service Design Lead'.slice(0, Math.min(29, this.state.h1n || 0)),
       h1Rest: 'Product & Service Design Lead'.slice(Math.min(29, this.state.h1n || 0)),
       h1CaretClass: 'caret2' + ((this.state.h1n || 0) < 29 && this.state.stage < 99 ? ' typing' : '') + (this.state.stage < 6 ? ' off' : ''),
       // Nav links sit in the muted grey until hovered, focused or chosen.
       nav: ['case', 'writing', 'work', 'about', 'contact'].reduce((o, k) => { o[k] = 'nl' + (this.state.navSel === k ? ' on' : ''); o[k + 'Go'] = () => this.setState({ navSel: k }); return o; }, {}),
-      loaderTextStyle: 'margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; white-space: pre; color: var(--fg); background: var(--pagebg); padding: 10px 16px; ' + (this.state.lpos ? 'position: absolute; left: ' + this.state.lpos.x + 'px; top: ' + this.state.lpos.y + 'px; opacity: 1' : 'opacity: 0'),
+      loaderTextStyle: 'margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; white-space: pre; color: var(--fg); background: var(--pagebg); background: color-mix(in srgb, var(--accent-ink) 10%, var(--pagebg)); border-left: 3px solid var(--accent-ink); padding: 10px 16px 10px 14px; ' + (this.state.lpos ? 'position: absolute; left: ' + this.state.lpos.x + 'px; top: ' + this.state.lpos.y + 'px; opacity: 1' : 'opacity: 0'),
       caretClass: 'caret' + (this.state.caret === 'typing' ? ' typing' : this.state.caret === 'done' ? ' done' : ''),
       ways: [
         { length: '2–6 weeks', title: 'Strategic sprints', body: 'Take an idea to a tested prototype and a scoped first release, or review a service, funnel or onboarding flow to come away with the fixes that drive the biggest impact.', like: 'Like: Practi · Zepho', best: 'a new idea that needs testing, or a live product that needs fine-tuning.' },
