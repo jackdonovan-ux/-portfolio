@@ -56,7 +56,7 @@ a{color:var(--fg)}a:hover{opacity:.8}
 @media (hover:none),(prefers-reduced-motion:reduce){.bpg{display:none}}
 /* Cards sit above the scaffolding layer, so the dots can never run over them. */
 .card,.wcards > *,.wcard,.mt,.hero-about{position:relative;z-index:46}
-.ldr{position:fixed;inset:0;z-index:250;display:flex;align-items:center;justify-content:center;background-color:var(--pagebg);background-image:radial-gradient(circle,rgba(128,126,120,.45) 1px,transparent 1.5px),linear-gradient(to right,rgba(128,126,120,.08) 1px,transparent 1px),linear-gradient(to bottom,rgba(128,126,120,.08) 1px,transparent 1px);background-size:16px 16px,64px 64px,64px 64px;background-position:8px 8px,0 0,0 0}
+.ldr{position:fixed;inset:0;z-index:250;display:flex;align-items:center;justify-content:center;background-color:var(--pagebg);background-image:radial-gradient(circle,rgba(var(--gp,91,79,208),.45) 1px,transparent 1.5px),linear-gradient(to right,rgba(var(--gp,91,79,208),.08) 1px,transparent 1px),linear-gradient(to bottom,rgba(var(--gp,91,79,208),.08) 1px,transparent 1px);background-size:16px 16px,64px 64px,64px 64px;background-position:8px 8px,0 0,0 0}
 .cdot,.cring{display:none}
 .cc,.cc *{cursor:none !important}
 .cc .cdot,.cc .cring{display:block;position:fixed;left:0;top:0;pointer-events:none;z-index:200;border-radius:50%;opacity:var(--con);mix-blend-mode:difference}
@@ -926,7 +926,7 @@ class Component extends DCLogic {
       typed: LOADER_LINE.slice(0, this.state.typed),
       loaderText: LOADER_LINE.slice(0, this.state.typed),
       showLoader: !!this.state.loader,
-      loaderStyle: 'transition: opacity .5s ease; opacity: ' + (this.state.lout ? '0' : '1'),
+      loaderStyle: '--gp: ' + gridRgb + '; transition: opacity .5s ease; opacity: ' + (this.state.lout ? '0' : '1'), // loader grid uses the same time-of-day purple (JD, 27 Nov 13:57)
       setLdrP: (el) => { this._ldrP = el; },
       ldrTxtStyle: 'transition: opacity .3s ease; opacity: ' + (this.state.ltxt ? '0' : '1'),
       ldrFillStyle: (() => { const f = this.state.lfill; if (!f) return 'display: none'; const c = f === 'full' ? 'inset(0px 0px 0px 0px)' : 'inset(' + f.t + 'px ' + f.r + 'px ' + f.b + 'px ' + f.l + 'px)'; return 'position: absolute; inset: 0; z-index: 2; background: var(--pagebg); ' + (f === 'full' ? '' : 'background: color-mix(in srgb, var(--accent-ink) 10%, var(--pagebg)); ') + 'pointer-events: none; clip-path: ' + c + '; -webkit-clip-path: ' + c + '; transition: clip-path .8s cubic-bezier(.65,0,.35,1), -webkit-clip-path .8s cubic-bezier(.65,0,.35,1), background-color .8s ease'; })(),
