@@ -12,11 +12,11 @@
 <meta property="og:title" content="Jack Donovan — Product &amp; Service Design Lead">
 <meta property="og:description" content="From first idea to launch, I frame the problem, set the direction and build the experience, setting the foundations that help it scale. In sectors that shape everyday life.">
 <meta property="og:url" content="https://jackdonovan.co/">
-<meta property="og:image" content="https://jackdonovan.co/assets/og-card-v2.png">
+<meta property="og:image" content="https://jackdonovan.co/assets/og-card-v4.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Jack Donovan — Product &amp; Service Design Lead">
 <meta name="twitter:description" content="From first idea to launch, I frame the problem, set the direction and build the experience, setting the foundations that help it scale. In sectors that shape everyday life.">
-<meta name="twitter:image" content="https://jackdonovan.co/assets/og-card-v2.png">
+<meta name="twitter:image" content="https://jackdonovan.co/assets/og-card-v4.png">
 <link rel="icon" type="image/png" href="assets/jdux-logo.png">
 <link rel="apple-touch-icon" href="assets/jdux-logo.png">
 </head>
@@ -512,6 +512,7 @@ html,body{overflow-x:clip}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5400}}'>
+const LOADER_LINE = 'What’s missing?\nLet’s build it.';
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { film: 1, still: false, tone: 'hero', loader: true, lt: 0, lout: false, theme: 'light', h1in: false, caret: 'typing', typed: 0, stage: 0, open: 0, q: 0, fx: 'mono', docked: false, hold: false, qbar: false, qhold: false }; }
   componentDidMount() {
@@ -673,31 +674,35 @@ class Component extends DCLogic {
       const b = h.getBoundingClientRect();
       this.setState({ lpos: { x: Math.round(b.left) - 16, y: Math.round(b.top - 14) - 10 } }); // minus the H1's pre-reveal 14px offset, and the plate's padding
     }, 30);
-    // Loader: the scaffolding fills the screen, "I build what's missing." types, a pause, then it clears
+    // Loader: the scaffolding fills the screen, "What's missing? Let's build it." types, a pause, then it clears
     // and the page assembles: title and copy, then the tiles, then the About card arrives last.
     const T = (ms, fn) => this._timers.push(setTimeout(fn, ms));
     this._timers = [];
-    // Slowed for readability (JD, 25 Nov 10:20): the slogan types at 85ms a character and holds ~2.3s.
-    T(350, () => { this._ty = setInterval(() => {
-      if (this.state.typed >= 23) { clearInterval(this._ty); this.setState({ caret: 'flash' }); return; }
-      this.setState({ typed: this.state.typed + 1 }); }, 85); });
+    // JD, 27 Nov 11:26: the loader asks, then invites: "What's missing? / Let's build it." on two lines.
+    // 66ms a character with a ~330ms beat after the question, so it finishes about when the old line did
+    // (the old one-liner typed at 85ms, JD 25 Nov 10:20); it holds ~2s, so everything after it runs 300ms later.
+    T(350, () => { let beat = 0; this._ty = setInterval(() => {
+      const n = this.state.typed;
+      if (n >= LOADER_LINE.length) { clearInterval(this._ty); this.setState({ caret: 'flash' }); return; }
+      if (n === 15 && beat < 5) { beat++; return; }
+      this.setState({ typed: n + 1 }); }, 66); });
     // JD, 26 Nov 09:48: the slogan clears, then its plate grows to fill the screen over the scaffolding,
     // and only then does the page build (copy stack, then the mosaic).
-    T(4500, () => this.setState({ ltxt: true }));
-    T(4850, () => {
+    T(4800, () => this.setState({ ltxt: true }));
+    T(5150, () => {
       const el = this._ldrP; const W = window.innerWidth || 0, H = window.innerHeight || 0;
       if (!el) { this.setState({ lfill: 'full' }); return; }
       const b = el.getBoundingClientRect();
       this.setState({ lfill: { t: Math.max(0, b.top), r: Math.max(0, W - b.right), b: Math.max(0, H - b.bottom), l: Math.max(0, b.left) } });
       this._timers.push(setTimeout(() => this.setState({ lfill: 'full' }), 40));
     });
-    T(5750, () => { this.setState({ loader: false, stage: 5, caret: 'done' }); try { sessionStorage.setItem('jdux-intro', '1'); } catch (e) {} });
+    T(6050, () => { this.setState({ loader: false, stage: 5, caret: 'done' }); try { sessionStorage.setItem('jdux-intro', '1'); } catch (e) {} });
     // Then the copy stack in sequence (JD, 25 Nov 10:23): name, title, subtitle, CTA and links, then the mosaic.
-    T(6050, () => this.setState({ stage: 6 }));   // title (appears, no typing)
-    T(6400, () => this.setState({ stage: 7 }));   // subtitle
-    T(6750, () => this.setState({ stage: 8 }));   // CTA and links
-    T(7150, () => this.setState({ stage: 9 }));   // case study tiles, one by one
-    T(8600, () => this.setState({ stage: 10 }));  // About, the final piece
+    T(6350, () => this.setState({ stage: 6 }));   // title (appears, no typing)
+    T(6700, () => this.setState({ stage: 7 }));   // subtitle
+    T(7050, () => this.setState({ stage: 8 }));   // CTA and links
+    T(7450, () => this.setState({ stage: 9 }));   // case study tiles, one by one
+    T(8900, () => this.setState({ stage: 10 }));  // About, the final piece
   }
   componentWillUnmount() { clearTimeout(this._bpT); window.removeEventListener('scroll', this._bpScroll); clearInterval(this._ty2); window.removeEventListener('resize', this._onResize); clearInterval(this._cu); clearTimeout(this._cuT); if (this._sio) this._sio.disconnect(); clearInterval(this._clk); clearTimeout(this._qt); clearTimeout(this._qb); (this._timers || []).forEach(clearTimeout); clearInterval(this._ty); document.removeEventListener('scroll', this._onScroll, true); clearInterval(this._rot); clearInterval(this._wrot); window.removeEventListener('scroll', this._depth); if (this._mio) this._mio.disconnect(); clearTimeout(this._mfT); if (this._io) this._io.disconnect(); if (this._tio) this._tio.disconnect(); }
   renderVals() {
@@ -874,8 +879,8 @@ class Component extends DCLogic {
       toggleTheme: () => this.setState({ theme: this.state.theme === 'light' ? 'dark' : 'light' }),
       themeIcon: this.state.theme === 'light' ? '◐' : '◑',
       themeLabel: this.state.theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode',
-      typed: 'I build what’s missing.'.slice(0, this.state.typed),
-      loaderText: 'I build what’s missing.'.slice(0, this.state.typed),
+      typed: LOADER_LINE.slice(0, this.state.typed),
+      loaderText: LOADER_LINE.slice(0, this.state.typed),
       showLoader: !!this.state.loader,
       loaderStyle: 'transition: opacity .5s ease; opacity: ' + (this.state.lout ? '0' : '1'),
       setLdrP: (el) => { this._ldrP = el; },
@@ -887,7 +892,7 @@ class Component extends DCLogic {
       h1CaretClass: 'caret2' + ((this.state.h1n || 0) < 29 && this.state.stage < 99 ? ' typing' : '') + (this.state.stage < 6 ? ' off' : ''),
       // Nav links sit in the muted grey until hovered, focused or chosen.
       nav: ['case', 'writing', 'work', 'about', 'contact'].reduce((o, k) => { o[k] = 'nl' + (this.state.navSel === k ? ' on' : ''); o[k + 'Go'] = () => this.setState({ navSel: k }); return o; }, {}),
-      loaderTextStyle: 'margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; white-space: nowrap; color: var(--fg); background: var(--pagebg); padding: 10px 16px; ' + (this.state.lpos ? 'position: absolute; left: ' + this.state.lpos.x + 'px; top: ' + this.state.lpos.y + 'px; opacity: 1' : 'opacity: 0'),
+      loaderTextStyle: 'margin: 0; font-family: var(--hf); font-weight: 400; font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; white-space: pre; color: var(--fg); background: var(--pagebg); padding: 10px 16px; ' + (this.state.lpos ? 'position: absolute; left: ' + this.state.lpos.x + 'px; top: ' + this.state.lpos.y + 'px; opacity: 1' : 'opacity: 0'),
       caretClass: 'caret' + (this.state.caret === 'typing' ? ' typing' : this.state.caret === 'done' ? ' done' : ''),
       ways: [
         { length: '2–6 weeks', title: 'Strategic sprints', body: 'Take an idea to a tested prototype and a scoped first release, or review a service, funnel or onboarding flow to come away with the fixes that drive the biggest impact.', like: 'Like: Practi · Zepho', best: 'a new idea that needs testing, or a live product that needs fine-tuning.' },
