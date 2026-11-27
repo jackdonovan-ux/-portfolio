@@ -193,10 +193,6 @@ html,body{overflow-x:clip}
 @media (max-width: 900px){details.mnav{display:block}header nav{gap:10px !important}}
 @media (max-width: 600px){header .hloc,header .hcrumb{display:none !important}.nbook{padding:0 13px !important;font-size:13px !important;min-height:38px}}
 .nofx,.nofx *{transition-duration:0s !important;transition-delay:0s !important}
-/* Nav, route C (JD, 27 Nov 13:42): the bar stays, the links sit centred; mark and location left, actions right, on the page margins. */
-.hact{display:flex;align-items:center;justify-content:flex-end;gap:12px;font-size:14px}
-@media (max-width:1180px){.hbar{display:flex !important;justify-content:space-between}}
-@media (max-width:900px){header .hact{gap:10px !important}}
 /* Scroll build (JD, 27 Nov 13:42): on first visit each module's own grey lines are ruled in first, then the content arrives.
    Results bar: the top rule draws across, the three dividers draw down, then the figures fade up and tick. */
 .stats{position:relative}
@@ -231,7 +227,7 @@ html,body{overflow-x:clip}
 
 <!-- NAV -->
 <header style="{{ navIn }} position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line2)">
-<div class="hbar" style="display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; padding: 14px clamp(24px, 6vw, 96px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 3vw, 40px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
 <div style="display: flex; align-items: center; gap: 18px">
 <a href="#top" aria-label="JDUX home" style="display: block"><img src="assets/jdux-logo.png" alt="JDUX" style="height: 28px; width: auto; display: block; filter: var(--logo)"></a>
 <span class="hloc" style="position: relative; display: block; height: 32px; min-width: 260px">
@@ -239,18 +235,16 @@ html,body{overflow-x:clip}
 <a href="#top" aria-hidden="{{ dockHidden }}" tabindex="-1" style="{{ dockStyle }}"><span style="position: relative; flex: none"><img src="assets/portrait-jack.jpg" alt="" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block"><span title="Available for new projects" style="position: absolute; right: -1px; bottom: -1px; width: 9px; height: 9px; border-radius: 50%; background: #2f7d4f; box-shadow: 0 0 0 2px var(--bg)"></span></span><span style="font-size: 14px; line-height: 1.2"><strong style="font-weight: 600">Jack Donovan</strong><span style="color: var(--muted)"> · Product &amp; Service Design Lead</span></span></a>
 </span>
 </div>
-<nav aria-label="Main" style="display: flex; align-items: center; justify-content: center; gap: 28px; font-size: 14px">
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; font-size: 14px">
 <a href="#selected-work" class="{{ nav.case }}" onClick="{{ nav.caseGo }}" style="text-decoration: none; color: var(--muted)">Projects</a>
 <a href="#writing" class="{{ nav.writing }}" onClick="{{ nav.writingGo }}" style="text-decoration: none; color: var(--muted)">Writing</a>
 <a href="#services" class="{{ nav.work }}" onClick="{{ nav.workGo }}" style="text-decoration: none; color: var(--muted)">Work with me</a>
 <a href="about.html" class="{{ nav.about }}" onClick="{{ nav.aboutGo }}" style="text-decoration: none; color: var(--muted)">About</a>
 <a href="#contact" class="{{ nav.contact }}" onClick="{{ nav.contactGo }}" style="text-decoration: none; color: var(--muted); font-weight: 600">Contact</a>
-</nav>
-<div class="hact">
 <a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" class="nbook" style="display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 16px; font-weight: 500; white-space: nowrap">Book an intro call</a>
 <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width: 40px; height: 40px; border-radius: 50%; background: transparent; color: var(--fg); border: 1px solid var(--line3); cursor: pointer; font-size: 15px; line-height: 1">{{ themeIcon }}</button>
 <details class="mnav"><summary aria-label="Menu"><svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></summary><div class="mpanel"><a href="#selected-work">Projects</a><a href="#writing">Writing</a><a href="#services">Work with me</a><a href="about.html">About</a><a href="#contact">Contact</a></div></details>
-</div>
+</nav>
 </div>
 <span aria-hidden="true" style="{{ depthStyle }}"></span>
 </header>
