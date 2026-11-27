@@ -52,7 +52,7 @@ a{color:var(--fg)}a:hover{opacity:.8}
 .bw span{color:var(--muted);transition:color .8s ease}
 .bw.in span{color:var(--fg)}.bw.in span.t2{color:var(--body)}
 .bw.in span:nth-child(1){transition-delay:0ms}.bw.in span:nth-child(2){transition-delay:58ms}.bw.in span:nth-child(3){transition-delay:117ms}.bw.in span:nth-child(4){transition-delay:176ms}.bw.in span:nth-child(5){transition-delay:234ms}.bw.in span:nth-child(6){transition-delay:292ms}.bw.in span:nth-child(7){transition-delay:351ms}.bw.in span:nth-child(8){transition-delay:410ms}.bw.in span:nth-child(9){transition-delay:468ms}.bw.in span:nth-child(10){transition-delay:526ms}.bw.in span:nth-child(11){transition-delay:585ms}.bw.in span:nth-child(12){transition-delay:644ms}.bw.in span:nth-child(13){transition-delay:702ms}.bw.in span:nth-child(14){transition-delay:760ms}.bw.in span:nth-child(15){transition-delay:819ms}.bw.in span:nth-child(16){transition-delay:878ms}.bw.in span:nth-child(17){transition-delay:936ms}.bw.in span:nth-child(18){transition-delay:994ms}
-.bpg{position:fixed;inset:0;pointer-events:none;z-index:45;opacity:var(--bpo);transition:opacity .45s ease;background-image:radial-gradient(circle,rgba(var(--gp,91,79,208),.7) 1.1px,transparent 1.6px),linear-gradient(to right,rgba(var(--gp,91,79,208),.16) 1px,transparent 1px),linear-gradient(to bottom,rgba(var(--gp,91,79,208),.16) 1px,transparent 1px);background-size:16px 16px,64px 64px,64px 64px;background-position:8px 8px,0 0,0 0;-webkit-mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%);mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%)}
+.bpg{position:fixed;inset:0;pointer-events:none;z-index:45;opacity:var(--bpo);transition:opacity .45s ease;background-image:radial-gradient(circle,rgba(var(--gp,91,79,208),.42) 1px,transparent 1.5px),linear-gradient(to right,rgba(var(--gp,91,79,208),.09) 1px,transparent 1px),linear-gradient(to bottom,rgba(var(--gp,91,79,208),.09) 1px,transparent 1px);background-size:16px 16px,64px 64px,64px 64px;background-position:8px 8px,0 0,0 0;-webkit-mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%);mask-image:radial-gradient(220px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%)}
 @media (hover:none),(prefers-reduced-motion:reduce){.bpg{display:none}}
 /* Cards sit above the scaffolding layer, so the dots can never run over them. */
 .card,.wcards > *,.wcard,.mt,.hero-about{position:relative;z-index:46}
@@ -193,6 +193,29 @@ html,body{overflow-x:clip}
 @media (max-width: 900px){details.mnav{display:block}header nav{gap:10px !important}}
 @media (max-width: 600px){header .hloc,header .hcrumb{display:none !important}.nbook{padding:0 13px !important;font-size:13px !important;min-height:38px}}
 .nofx,.nofx *{transition-duration:0s !important;transition-delay:0s !important}
+/* Nav, route C (JD, 27 Nov 13:42): the bar stays, the links sit centred; mark and location left, actions right, on the page margins. */
+.hact{display:flex;align-items:center;justify-content:flex-end;gap:12px;font-size:14px}
+@media (max-width:1180px){.hbar{display:flex !important;justify-content:space-between}}
+@media (max-width:900px){header .hact{gap:10px !important}}
+/* Scroll build (JD, 27 Nov 13:42): on first visit each module's own grey lines are ruled in first, then the content arrives.
+   Results bar: the top rule draws across, the three dividers draw down, then the figures fade up and tick. */
+.stats{position:relative}
+.stats::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:var(--line3);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.65,0,.35,1)}
+.stats.in::before{transform:none}
+@media (min-width:1001px){
+.stats > *{position:relative}
+.stats > * + *::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line2);transform:scaleY(0);transform-origin:50% 0;transition:transform .35s cubic-bezier(.65,0,.35,1);transition-delay:calc(.2s + var(--i,0) * 70ms)}
+.stats.in > *::before{transform:none}
+.stats.sfade > * > *{transition-delay:calc(.45s + var(--i,0) * 90ms)}
+}
+@media (max-width:1000px){.stats::before{display:none}}
+/* What I do: each card's outline is ruled in (top and bottom across, sides down), the panel fills, the copy fades up, and the outline steps back. */
+.wcards.bi > *::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(var(--line3),var(--line3)) 0 0/0 1px no-repeat,linear-gradient(var(--line3),var(--line3)) 0 0/1px 0 no-repeat,linear-gradient(var(--line3),var(--line3)) 100% 0/1px 0 no-repeat,linear-gradient(var(--line3),var(--line3)) 0 100%/0 1px no-repeat;transition:background-size .45s cubic-bezier(.65,0,.35,1),opacity .5s ease;transition-delay:calc(var(--i,0) * 90ms),calc(var(--i,0) * 90ms + 1s)}
+.wcards.bi.in > *::after{background-size:100% 1px,1px 100%,1px 100%,100% 1px;opacity:0}
+.wcards.bi > *{outline:0 !important}.wcards.bi:not(.in) > *{transform:none}
+.wcards.bi > *{transition-delay:calc(var(--i,0) * 90ms + .3s)}
+.wcards.bi > * > *{transition-delay:calc(var(--i,0) * 90ms + .45s)}
+@media (prefers-reduced-motion:reduce){.stats::before,.stats > *::before,.wcards.bi > *::after{transition:none !important}}
 </style>
 </helmet>
 <div class="{{ rootClass }}" ref="{{ setRoot }}" data-theme="{{ theme }}" data-tone="{{ tone }}" onMouseMove="{{ bpMove }}" onMouseLeave="{{ bpOut }}" style="--sd: 0; --mx: -500px; --my: -500px; --bpo: 0; --cx: -100px; --cy: -100px; --ring: 0; --con: 0; background: var(--pagebg); color: var(--fg); font-family: 'Geist', system-ui, sans-serif; min-height: 100vh; transition: background-color .9s ease, color .4s ease">
@@ -208,7 +231,7 @@ html,body{overflow-x:clip}
 
 <!-- NAV -->
 <header style="{{ navIn }} position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line2)">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 3vw, 40px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
+<div class="hbar" style="display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; padding: 14px clamp(24px, 6vw, 96px); max-width: 1440px; margin: 0 auto; box-sizing: border-box">
 <div style="display: flex; align-items: center; gap: 18px">
 <a href="#top" aria-label="JDUX home" style="display: block"><img src="assets/jdux-logo.png" alt="JDUX" style="height: 28px; width: auto; display: block; filter: var(--logo)"></a>
 <span class="hloc" style="position: relative; display: block; height: 32px; min-width: 260px">
@@ -216,16 +239,18 @@ html,body{overflow-x:clip}
 <a href="#top" aria-hidden="{{ dockHidden }}" tabindex="-1" style="{{ dockStyle }}"><span style="position: relative; flex: none"><img src="assets/portrait-jack.jpg" alt="" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block"><span title="Available for new projects" style="position: absolute; right: -1px; bottom: -1px; width: 9px; height: 9px; border-radius: 50%; background: #2f7d4f; box-shadow: 0 0 0 2px var(--bg)"></span></span><span style="font-size: 14px; line-height: 1.2"><strong style="font-weight: 600">Jack Donovan</strong><span style="color: var(--muted)"> · Product &amp; Service Design Lead</span></span></a>
 </span>
 </div>
-<nav aria-label="Main" style="display: flex; align-items: center; gap: 28px; font-size: 14px">
+<nav aria-label="Main" style="display: flex; align-items: center; justify-content: center; gap: 28px; font-size: 14px">
 <a href="#selected-work" class="{{ nav.case }}" onClick="{{ nav.caseGo }}" style="text-decoration: none; color: var(--muted)">Projects</a>
 <a href="#writing" class="{{ nav.writing }}" onClick="{{ nav.writingGo }}" style="text-decoration: none; color: var(--muted)">Writing</a>
 <a href="#services" class="{{ nav.work }}" onClick="{{ nav.workGo }}" style="text-decoration: none; color: var(--muted)">Work with me</a>
 <a href="about.html" class="{{ nav.about }}" onClick="{{ nav.aboutGo }}" style="text-decoration: none; color: var(--muted)">About</a>
 <a href="#contact" class="{{ nav.contact }}" onClick="{{ nav.contactGo }}" style="text-decoration: none; color: var(--muted); font-weight: 600">Contact</a>
+</nav>
+<div class="hact">
 <a href="https://calendar.app.google/qWgKWMws2qoUTRYHA" target="_blank" rel="noopener" class="nbook" style="display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 16px; font-weight: 500; white-space: nowrap">Book an intro call</a>
 <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width: 40px; height: 40px; border-radius: 50%; background: transparent; color: var(--fg); border: 1px solid var(--line3); cursor: pointer; font-size: 15px; line-height: 1">{{ themeIcon }}</button>
 <details class="mnav"><summary aria-label="Menu"><svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></summary><div class="mpanel"><a href="#selected-work">Projects</a><a href="#writing">Writing</a><a href="#services">Work with me</a><a href="about.html">About</a><a href="#contact">Contact</a></div></details>
-</nav>
+</div>
 </div>
 <span aria-hidden="true" style="{{ depthStyle }}"></span>
 </header>
@@ -294,7 +319,7 @@ html,body{overflow-x:clip}
 
 <!-- RESULTS: one stat per case study, counting up as the bar arrives -->
 <section aria-label="Results" data-tone="who" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(24px, 6vw, 96px) 136px">
-<div class="stats sfade" ref="{{ setStats }}" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line3)">
+<div class="stats sfade" ref="{{ setStats }}" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0">
 <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
 <div style="{{ s.cell }}">
 <span style="{{ s.valStyle }}">{{ s.value }}</span>
@@ -789,6 +814,7 @@ class Component extends DCLogic {
     const cool = [150, 178, 226], cw = Math.max(0, -summer) * 0.22;
     const day = ka[1].map((v, j) => { const c = v + (kb[1][j] - v) * fr; return Math.round(c + (cool[j] - c) * cw); }).join(', ');
     const dark = this.state.theme === 'dark';
+    // AI grid strength (JD, 27 Nov 13:49): back to the old grey's dot and line opacity, purple hue kept (route A lighter).
     // AI grid (JD, 27 Nov 13:19): route A, the pointer reveal is iris purple, and its shade drifts with the visitor's day,
     // using the same sunrise and sunset as the daylight wash: indigo at night, lavender at sunrise, iris at midday,
     // warmer violet at golden hour and dusk. Dark mode uses lifted shades. Canvas: Purple-grid-daylight.
@@ -846,7 +872,7 @@ class Component extends DCLogic {
         const sp = this.state.sp || 0;
         const v = x.pending ? '[ — ]' : (x.prefix || '') + String(Math.round(x.from + (x.to - x.from) * sp)) + x.suffix;
         return { ...x, value: v,
-          cell: 'display: flex; flex-direction: column; gap: 14px; min-height: 210px; box-sizing: border-box; padding: 32px 28px 28px ' + (i ? '28px' : '0') + '; border-left: ' + (i ? '1px solid var(--line2)' : '0') + (x.pending ? '; outline: 1px dashed var(--line3); outline-offset: -8px' : ''),
+          cell: 'display: flex; flex-direction: column; gap: 14px; min-height: 210px; box-sizing: border-box; padding: 32px 28px 28px ' + (i ? '28px' : '0') + (x.pending ? '; outline: 1px dashed var(--line3); outline-offset: -8px' : ''),
           valStyle: 'font-family: var(--hf); font-weight: 300; font-size: clamp(2.6rem, 4.4vw, 4rem); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; white-space: nowrap; color: ' + (x.pending ? 'var(--muted)' : 'var(--fg)') };
       }),
       index: [
